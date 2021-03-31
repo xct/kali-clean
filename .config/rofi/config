@@ -1,0 +1,21 @@
+rofi.modi:                           window,run
+rofi.opacity:                        30
+rofi.theme: solarized
+rofi.font: DejaVu Sans Mono 12
+rofi.lines: 15
+rofi.columns:                        3
+rofi.levenshtein-sort:               true 
+rofi.auto-select:                    false
+rofi.combi-modi:                     window,run
+rofi.fuzzy:                          true
+rofi.separator-style:                solid
+rofi.hide-scrollbar:                 true
+rofi.fullscreen:                     false
+
+rofi.kb-row-left:                    Control+Page_Up,Control+c
+rofi.kb-row-right:                   Control+Page_Down,Control+r
+rofi.kb-row-up:                      
+Up,Control+p,Shift+Tab,Shift+ISO_Left_Tab,Control+s
+rofi.kb-row-down:                    Down,Control+n,Control+t
+
+rofi.theme: /usr/share/rofi/themes/Arc-Dark.rasi
