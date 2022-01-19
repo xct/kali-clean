@@ -253,7 +253,7 @@ bell:
 #
 # Window opacity as a floating point number from `0.0` to `1.0`.
 # The value `0.0` is completely transparent and `1.0` is opaque.
-background_opacity: 1.0
+window.opacity: 1.0
 
 # Mouse bindings
 #
@@ -285,7 +285,7 @@ mouse:
   # If this is `true`, the cursor is temporarily hidden when typing.
   hide_when_typing: false
 
-  url:
+  hints:
     # URL launcher
     #
     # This program is executed when clicking on a text which is recognized as a URL.
