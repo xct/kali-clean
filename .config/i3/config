@@ -125,7 +125,7 @@ bar {
         i3bar_command i3bar -t
         position top
         height 26
-        font pango:RobotoMono Nerd Font Regular 7.5
+        font pango:RobotoMono Nerd Font Regular 12
         colors {
             statusline #EEEEEE
             background #1C1D2B88
