@@ -2,46 +2,57 @@
 
 sudo apt update && sudo apt upgrade -y
 
-sudo apt-get install -y arandr flameshot arc-theme feh i3blocks i3status i3 i3-wm lxappearance python3-pip rofi unclutter cargo compton papirus-icon-theme imagemagick
-sudo apt-get install -y libxcb-shape0-dev libxcb-keysyms1-dev libpango1.0-dev libxcb-util0-dev xcb libxcb1-dev libxcb-icccm4-dev libyajl-dev libev-dev libxcb-xkb-dev libxcb-cursor-dev libxkbcommon-dev libxcb-xinerama0-dev libxkbcommon-x11-dev libstartup-notification0-dev libxcb-randr0-dev libxcb-xrm0 libxcb-xrm-dev autoconf meson
-sudo apt-get install -y libxcb-render-util0-dev libxcb-shape0-dev libxcb-xfixes0-dev 
+sudo echo -e "deb-src http://http.kali.org/kali kali-rolling main contrib non-free" >> /etc/apt/sources.list
 
+sudo apt -y install build-essential checkinstall autoconf automake autotools-dev m4 meson
+sudo apt -y install libx11-dev freeglut3-dev jq arandr libxcb-shape0-dev libxcb-keysyms1-dev libpango1.0-dev libxcb-util0-dev xcb libxcb1-dev libxcb-icccm4-dev libyajl-dev libev-dev libxcb-xkb-dev libxcb-cursor-dev libxkbcommon-dev libxcb-xinerama0-dev libxkbcommon-x11-dev libstartup-notification0-dev libxcb-randr0-dev libxcb-xrm0 libxcb-xrm-dev libxcb-render-util0-dev libxcb-shape0-dev libxcb-xfixes0-dev
+sudo apt -y install arc-theme papirus-icon-theme feh unclutter compton imagemagick python3-pip rofi i3blocks rust-alacritty
+
+# pentest tools, will be a growing list
+sudo apt -y install crackmapexec enum4linux nikto nmap smbclient smbmap snmp sslscan feroxbuster flameshot bloodhound neo4j cargo exiftool chisel seclists
+
+source $HOME/.cargo/env
+
+mkdir -p ~/.config/i3 ~/.config/compton ~/.config/rofi ~/.config/alacritty ~/.config/feroxbuster
+sudo mv .rustscan.toml
+sudo mv .config/i3/config ~/.config/i3/config
+sudo mv .config/feroxbuster/ferox-config.toml ~/.config/feroxbuster/ferox-config.toml
+sudo mv .config/alacritty/alacritty.yml ~/.config/alacritty/alacritty.yml
+sudo mv .config/i3/i3blocks.conf ~/.config/i3/i3blocks.conf
+sudo mv .config/compton/compton.conf ~/.config/compton/compton.conf
+sudo mv .config/rofi/config ~/.config/rofi/config
+sudo mv .config/i3/clipboard_fix.sh ~/.config/i3/clipboard_fix.sh
+
+# github tools install
+cargo install rustscan
+sudo git clone https://github.com/ivan-sincek/php-reverse-shell.git webshells
+sudo curl -sL https://api.github.com/repos/carlospolop/PEASS-ng/releases/latest | jq -r ".assets[].browser_download_url" > peass
+sudo curl -sL https://api.github.com/repos/DominicBreuker/pspy/releases/latest | jq -r ".assets[].browser_download_url" > pspy
+sudo mv peass /opt/peass
+sudo mv pspy /opt/pspy
+cd /opt/peass
+sudo wget -i peass
+cd ..
+cd /opt/pspy
+sudo wget -i pspy
+cd ..
+sudo git clone https://github.com/ivan-sincek/php-reverse-shell.git webshells
+cd ~
+
+# pip tools install
+pip3 install bloodhound
+
+# nerdfonts install/reboot
 mkdir -p ~/.local/share/fonts/
 
-wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Iosevka.zip
-wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/RobotoMono.zip
+sudo curl -sL https://api.github.com/repos/ryanoasis/nerd-fonts/releases/latest | jq -r ".assets[] | select(.name | test(\"Iosevka\")) | .browser_download_url" > iosevka
+wget -i iosevka
+sudo curl -sL https://api.github.com/repos/ryanoasis/nerd-fonts/releases/latest | jq -r ".assets[] | select(.name | test(\"RobotoMono\")) | .browser_download_url" > robotomono
+wget -i robotomono
 
 unzip Iosevka.zip -d ~/.local/share/fonts/
 unzip RobotoMono.zip -d ~/.local/share/fonts/
 
 fc-cache -fv
 
-wget https://github.com/barnumbirr/alacritty-debian/releases/download/v0.10.0-rc4-1/alacritty_0.10.0-rc4-1_amd64_bullseye.deb
-sudo dpkg -i alacritty_0.10.0-rc4-1_amd64_bullseye.deb
-sudo apt install -f
-
-git clone https://www.github.com/Airblader/i3 i3-gaps
-cd i3-gaps && mkdir -p build && cd build && meson ..
-ninja
-sudo ninja install
-cd ../..
-
-pip3 install pywal
-
-mkdir -p ~/.config/i3
-mkdir -p ~/.config/compton
-mkdir -p ~/.config/rofi
-mkdir -p ~/.config/alacritty
-cp .config/i3/config ~/.config/i3/config
-cp .config/alacritty/alacritty.yml ~/.config/alacritty/alacritty.yml
-cp .config/i3/i3blocks.conf ~/.config/i3/i3blocks.conf
-cp .config/compton/compton.conf ~/.config/compton/compton.conf
-cp .config/rofi/config ~/.config/rofi/config
-cp .fehbg ~/.fehbg
-cp .config/i3/clipboard_fix.sh ~/.config/i3/clipboard_fix.sh
-cp -r .wallpaper ~/.wallpaper 
-
-echo "Done! Grab some wallpaper and run pywal -i filename to set your color scheme. To have the wallpaper set on every boot edit ~.fehbg"
-echo "After reboot: Select i3 on login, run lxappearance and select arc-dark"
-
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+echo "Done! Please reboot: Select i3 on login, run lxappearance and select arc-dark"

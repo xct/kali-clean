@@ -1,8 +1,12 @@
 # Kali-Clean
 
-My kali i3 desktop setup. Some people have been asking so I wrote a quick installer to get going. 
+[xct/kali-clean](https://github.com/xct/kali-clean) with personal tweaks and borrowed ideas from [islanddog/kali-clean-pwnbox](https://github.com/islanddog/kali-clean-pwnbox).
 
-After cloning the repo just run ./install.sh from a non-root user. This updates kali and installs a lot of stuff, so it will take a while. Feel free to optimize ;)
+This post-installation script is intended to be used on minimal Kali VM with no tools. I used [the official VM build script](https://gitlab.com/kalilinux/build-scripts/kali-vm) with the following options to get started. It should still work fine on a bare metal installation.
+
+```
+./build.sh -v vmware -D i3 -Z $(cat /etc/timezone) -T none -P "network-manager"
+```
 
 ## Installation
 
@@ -10,8 +14,3 @@ After cloning the repo just run ./install.sh from a non-root user. This updates 
 ./install.sh
 ```
 
-After the script is done reboot and select i3 (top right corner) on the login screen. Then open a terminal (`ctrl+return`) run `lxappearance`and select ark-dark theme and change the icons to whatever you like (I used papyrus).
-
-## Credits
-
-Wallpaper by Wenqing Yan ( https://www.yuumeiart.com/ ) 
