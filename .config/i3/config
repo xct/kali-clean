@@ -1,6 +1,7 @@
 set $mod Mod4
+focus_follows_mouse no
 
-# window Renaming
+# window renaming
 bindsym $mod+n exec i3-input -F 'Rename workspace to "%s"' -P 'New name(add #:) '
 
 # font for window titles
