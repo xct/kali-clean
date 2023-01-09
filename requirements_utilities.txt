@@ -9,7 +9,7 @@ checkinstall
 compton
 curl
 feh
-firefox
+firefox-esr
 flameshot
 i3
 i3blocks
