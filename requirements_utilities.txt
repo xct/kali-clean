@@ -18,6 +18,7 @@ lxappearance
 m4
 meson
 neovim
+openvpn
 p7zip-full
 papirus-icon-theme
 python2

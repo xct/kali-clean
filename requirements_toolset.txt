@@ -3,10 +3,12 @@ chisel
 crackmapexec
 enum4linux
 exiftool
+exploitdb
 feroxbuster
 neo4j
 nikto
 nmap
+rlwrap
 seclists
 smbclient
 smbmap

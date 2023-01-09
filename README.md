@@ -13,3 +13,8 @@ This post-installation script is intended to be used on minimal Kali VM with no 
 ```
 ./install.sh
 ```
+
+## TODOs
+
+- Customise firefox (Bookmarks, profile, etc)
+- Add lockscreen
