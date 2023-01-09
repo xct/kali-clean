@@ -1,19 +1,19 @@
 #!/bin/bash
 echo -e "deb-src http://http.kali.org/kali kali-rolling main contrib non-free" | sudo tee -a /etc/apt/sources.list
+
+# TODO: remove once kali updates its repo for i3 4.22+
 curl https://baltocdn.com/i3-window-manager/signing.asc | sudo apt-key add -
-sudo apt install apt-transport-https --yes
+sudo apt -y install apt-transport-https
 echo "deb https://baltocdn.com/i3-window-manager/i3/i3-autobuild/ all main" | sudo tee /etc/apt/sources.list.d/i3-autobuild.list
+echo 'Package: i3*\nPin: origin "baltocdn.com"\nPin-Priority: 1001' | sudo tee /etc/apt/preferences.d/00-i3-autobuild.pref
 
 sudo apt update && sudo apt upgrade -y
-sudo apt -y install build-essential checkinstall autoconf automake autotools-dev m4 meson cargo
-sudo apt -y install arc-theme papirus-icon-theme feh flameshot unclutter compton python3-pip rofi i3blocks alacritty neovim
-sudo apt -y install curl p7zip-full
-# pentest tools, will be a growing list
-sudo apt -y install crackmapexec enum4linux nikto nmap smbclient smbmap snmp sslscan feroxbuster bloodhound neo4j exiftool chisel seclists
+cat requirements_utilities.txt | xargs sudo apt -y install
+cat requirements_toolset.txt | xargs sudo apt -y install
 
 source $HOME/.cargo/env
-echo 'export PATH=$HOME/.local/bin:$HOME/.cargo/bin:$PATH' >> .zshrc
-echo 'export PATH=$HOME/.local/bin:$HOME/.cargo/bin:$PATH' >> .bashrc
+echo 'export PATH=$HOME/.local/bin:$HOME/.cargo/bin:$PATH' >> $HOME/.zshrc
+echo 'export PATH=$HOME/.local/bin:$HOME/.cargo/bin:$PATH' >> $HOME/.bashrc
 
 mkdir -p ~/.config/i3 ~/.config/compton ~/.config/rofi ~/.config/alacritty ~/.config/feroxbuster
 sudo mv .rustscan.toml
@@ -51,11 +51,11 @@ wget -i iosevka
 rm iosevka
 sudo curl -sL https://api.github.com/repos/ryanoasis/nerd-fonts/releases/latest | jq -r ".assets[] | select(.name | test(\"RobotoMono\")) | .browser_download_url" > robotomono
 wget -i robotomono
-rm -i robotomono
+rm robotomono
 
 7z x Iosevka.zip -o.local/share/fonts/
 7z x RobotoMono.zip -o.local/share/fonts/
 
 fc-cache -fv
 
-echo "Done! Please reboot: Select i3 on login, run lxappearance and select arc-dark"
+echo "Done! Please reboot: Select i3 on login, run lxappearance and select arc-dark, you can also delete this repo."

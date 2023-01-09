@@ -1,0 +1,14 @@
+bloodhound
+chisel
+crackmapexec
+enum4linux
+exiftool
+feroxbuster
+neo4j
+nikto
+nmap
+seclists
+smbclient
+smbmap
+snmp
+sslscan
