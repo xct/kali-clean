@@ -1,29 +1,27 @@
 #!/usr/bin/env bash
-echo -e "deb-src http://http.kali.org/kali kali-rolling main contrib non-free" | sudo tee -a /etc/apt/sources.list
 
 # TODO: remove once kali updates its repo for i3 4.22+
+# echo -e "deb-src http://http.kali.org/kali kali-rolling main contrib non-free" | sudo tee -a /etc/apt/sources.list
 curl https://baltocdn.com/i3-window-manager/signing.asc | sudo apt-key add -
 sudo apt -y install apt-transport-https
 echo "deb https://baltocdn.com/i3-window-manager/i3/i3-autobuild/ all main" | sudo tee /etc/apt/sources.list.d/i3-autobuild.list
 echo 'Package: i3*\nPin: origin "baltocdn.com"\nPin-Priority: 1001' | sudo tee /etc/apt/preferences.d/00-i3-autobuild.pref
 
-sudo apt update && sudo apt upgrade -y
-cat requirements_utilities.txt | xargs sudo apt -y install
-cat requirements_toolset.txt | xargs sudo apt -y install
+sudo apt update && sudo DEBIAN_FRONTEND=noninteractive apt -yq upgrade
+cat requirements_utilities.txt | xargs sudo DEBIAN_FRONTEND=noninteractive apt -yq install
+cat requirements_toolset.txt | xargs sudo DEBIAN_FRONTEND=noninteractive apt -yq install
 
-source $HOME/.cargo/env
-echo 'export PATH=$HOME/.local/bin:$HOME/.cargo/bin:$PATH' >> $HOME/.zshrc
-echo 'export PATH=$HOME/.local/bin:$HOME/.cargo/bin:$PATH' >> $HOME/.bashrc
-
-mkdir -p ~/.config/i3 ~/.config/compton ~/.config/rofi ~/.config/alacritty ~/.config/feroxbuster
-cp .rustscan.toml ~
-cp .config/i3/config ~/.config/i3/config
-cp .config/feroxbuster/ferox-config.toml ~/.config/feroxbuster/ferox-config.toml
-cp .config/alacritty/alacritty.yml ~/.config/alacritty/alacritty.yml
-cp .config/i3/i3blocks.conf ~/.config/i3/i3blocks.conf
-cp .config/compton/compton.conf ~/.config/compton/compton.conf
-cp .config/rofi/config ~/.config/rofi/config
-cp .config/i3/clipboard_fix.sh ~/.config/i3/clipboard_fix.sh
+# personalised configurations
+mkdir -p $HOME/.config/i3 $HOME/.config/compton $HOME/.config/rofi $HOME/.config/alacritty $HOME/.config/feroxbuster
+cp .zprofile $HOME
+cp .rustscan.toml $HOME
+cp .config/i3/config $HOME/.config/i3/config
+cp .config/feroxbuster/ferox-config.toml $HOME/.config/feroxbuster/ferox-config.toml
+cp .config/alacritty/alacritty.yml $HOME/.config/alacritty/alacritty.yml
+cp .config/i3/i3blocks.conf $HOME/.config/i3/i3blocks.conf
+cp .config/compton/compton.conf $HOME/.config/compton/compton.conf
+cp .config/rofi/config $HOME/.config/rofi/config
+cp .config/i3/clipboard_fix.sh $HOME/.config/i3/clipboard_fix.sh
 
 # github tools install
 cargo install rustscan
@@ -46,8 +44,8 @@ rm iosevka
 sudo curl -sL https://api.github.com/repos/ryanoasis/nerd-fonts/releases/latest | jq -r ".assets[] | select(.name | test(\"RobotoMono\")) | .browser_download_url" > robotomono
 wget -i robotomono
 rm robotomono
-7z x Iosevka.zip -o.local/share/fonts/
-7z x RobotoMono.zip -o.local/share/fonts/
+7z x Iosevka.zip -o$HOME/.local/share/fonts/
+7z x RobotoMono.zip -o$HOME/.local/share/fonts/
 rm Iosevka.zip
 rm RobotoMono.zip
 fc-cache -fv
