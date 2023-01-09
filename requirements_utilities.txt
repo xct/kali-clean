@@ -20,6 +20,7 @@ meson
 neovim
 p7zip-full
 papirus-icon-theme
+python2
 python3-pip
 rofi
 unclutter
