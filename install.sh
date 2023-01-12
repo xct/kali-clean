@@ -2,10 +2,10 @@
 
 # TODO: remove once kali updates its repo for i3 4.22+
 # echo -e "deb-src http://http.kali.org/kali kali-rolling main contrib non-free" | sudo tee -a /etc/apt/sources.list
-curl https://baltocdn.com/i3-window-manager/signing.asc | sudo apt-key add -
 sudo apt -y install apt-transport-https
+curl https://baltocdn.com/i3-window-manager/signing.asc | sudo apt-key add -
 echo "deb https://baltocdn.com/i3-window-manager/i3/i3-autobuild/ all main" | sudo tee /etc/apt/sources.list.d/i3-autobuild.list
-echo 'Package: i3*\nPin: origin "baltocdn.com"\nPin-Priority: 1001' | sudo tee /etc/apt/preferences.d/00-i3-autobuild.pref
+printf 'Package: i3*\nPin: origin "baltocdn.com"\nPin-Priority: 1001' | sudo tee /etc/apt/preferences.d/00-i3-autobuild.pref
 
 sudo apt update && sudo DEBIAN_FRONTEND=noninteractive apt -yq upgrade
 cat requirements_utilities.txt | xargs sudo DEBIAN_FRONTEND=noninteractive apt -yq install
@@ -30,8 +30,15 @@ sudo mkdir -p /opt/peass && sudo wget -i git_peass -P /opt/peass
 sudo curl -sL https://api.github.com/repos/DominicBreuker/pspy/releases/latest | jq -r ".assets[].browser_download_url" > git_pspy
 sudo mkdir -p /opt/pspy && sudo wget -i git_pspy -P /opt/pspy
 rm git_peass git_pspy
-mkdir -p /opt/webshells
+sudo mkdir -p /opt/webshells
 sudo git clone https://github.com/ivan-sincek/php-reverse-shell.git /opt/webshells/php-reverse-shell
+sudo mkdir -p /opt/win_binaries
+sudo wget https://github.com/skyformat99/netcat-for-windows/blob/master/1.12/nc.exe -P /opt/win_binaries
+sudo wget https://github.com/skyformat99/netcat-for-windows/blob/master/1.12/nc64.exe -P /opt/win_binaries
+sudo wget https://live.sysinternals.com/PsExec.exe -P /opt/win_binaries
+sudo wget https://live.sysinternals.com/PsExec64.exe -P /opt/win_binaries
+sudo wget https://github.com/itm4n/PrintSpoofer/releases/download/v1.0/PrintSpoofer32.exe -P /opt/win_binaries
+sudo wget https://github.com/itm4n/PrintSpoofer/releases/download/v1.0/PrintSpoofer64.exe -P /opt/win_binaries
 
 # pip tools install
 pip3 install bloodhound

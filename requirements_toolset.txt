@@ -5,9 +5,13 @@ enum4linux
 exiftool
 exploitdb
 feroxbuster
+impacket-scripts
+metasploit-framework
 neo4j
 nikto
 nmap
+proxychains4
+python3-impacket
 rlwrap
 seclists
 smbclient
