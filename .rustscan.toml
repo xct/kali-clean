@@ -1,2 +1,2 @@
-command = ["-A -sC -sV --script 'default,vuln' -oX scan"]
+command = ["-A -sC -sV -Pn --script 'default,vuln' -oX scan"]
 ulimit = 10000
