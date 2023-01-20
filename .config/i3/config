@@ -13,7 +13,7 @@ exec_always --no-startup-id exec nm-applet etc
 # use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec terminator
 bindsym $mod+P exec flameshot gui
 bindsym $mod+Shift+q kill
 bindsym $mod+d exec "rofi -show run"

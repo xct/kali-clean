@@ -1,0 +1,10 @@
+% impacket
+
+# mssqlclient
+impacket-mssqlclient -port <RPORT> '<USERNAME>:<PASS>@<RHOST>'
+
+# smbserver (share on kali)
+impacket-smbserver -smb2support evil $PWD
+
+# smbserver (password share on kali)
+impacket-smbserver -smb2support -username evil -password evil evil $PWD

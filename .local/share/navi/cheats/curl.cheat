@@ -1,0 +1,4 @@
+% curl
+
+# POST (with header)
+curl -X POST <URL> -H 'Content-Length: 0'

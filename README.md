@@ -16,5 +16,7 @@ This post-installation script is intended to be used on minimal Kali VM with no 
 
 ## TODOs
 
-- Customise firefox (Bookmarks, profile, etc)
+- Customise firefox (Bookmarks, profile, foxyproxy addon)
 - Add lockscreen
+- fix compton opacity with terminator
+- add command to send vpn ip address to clipboard on click

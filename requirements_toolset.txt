@@ -5,8 +5,10 @@ enum4linux
 exiftool
 exploitdb
 feroxbuster
+hydra
 impacket-scripts
 metasploit-framework
+name-that-hash
 neo4j
 nikto
 nmap
@@ -17,4 +19,5 @@ seclists
 smbclient
 smbmap
 snmp
+sqlmap
 sslscan

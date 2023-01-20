@@ -1,0 +1,5 @@
+% ftp
+
+# ftp download all
+prompt
+mget *

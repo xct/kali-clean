@@ -1,4 +1,3 @@
-alacritty
 arc-theme
 autoconf
 automake
@@ -11,6 +10,7 @@ curl
 feh
 firefox-esr
 flameshot
+fzf
 i3
 i3blocks
 jq
@@ -24,6 +24,8 @@ papirus-icon-theme
 python2
 python3-pip
 rofi
+terminator
+thunar
 unclutter
 xinit
 xorg
