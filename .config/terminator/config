@@ -1,10 +1,9 @@
 [global_config]
   borderless = True
-  sticky = True
 [keybindings]
 [profiles]
   [[default]]
-    font = Iosevka 10
+    font = Iosevka Nerd Font 10
     show_titlebar = False
     scrollbar_position = hidden
     use_system_font = False
