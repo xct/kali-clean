@@ -1,7 +1,11 @@
+i3
+i3blocks
+i3lock-color
 arc-theme
 autoconf
 automake
 autotools-dev
+betterlockscreen
 build-essential
 cargo
 checkinstall
@@ -11,8 +15,6 @@ feh
 firefox-esr
 flameshot
 fzf
-i3
-i3blocks
 jq
 lxappearance
 m4

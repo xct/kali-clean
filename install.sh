@@ -5,8 +5,9 @@ cat requirements_utilities.txt | xargs sudo DEBIAN_FRONTEND=noninteractive apt -
 cat requirements_toolset.txt | xargs sudo DEBIAN_FRONTEND=noninteractive apt -yq install
 
 # personalised configurations
-mkdir -p $HOME/.local/share/navi/cheats $HOME/.config/i3 $HOME/.config/compton $HOME/.config/rofi $HOME/.config/feroxbuster $HOME/.config/terminator
+mkdir -p $HOME/.local/share/navi/cheats $HOME/.config/i3 $HOME/.config/compton $HOME/.config/rofi $HOME/.config/feroxbuster $HOME/.config/terminator $HOME/.wallpaper
 cp -r .local/share/navi/cheats $HOME/.local/share/navi
+cp -r .mozilla $HOME
 cp .zprofile $HOME
 cp .rustscan.toml $HOME
 cp .config/i3/config $HOME/.config/i3/config
@@ -16,6 +17,8 @@ cp .config/i3/i3blocks.conf $HOME/.config/i3/i3blocks.conf
 cp .config/compton/compton.conf $HOME/.config/compton/compton.conf
 cp .config/rofi/config $HOME/.config/rofi/config
 cp .config/i3/clipboard_fix.sh $HOME/.config/i3/clipboard_fix.sh
+cat requirements_wallpapers.txt | xargs wget -P $HOME/.wallpaper
+betterlockscreen -u $HOME/.wallpaper
 
 # rust tools install
 cargo install rustscan navi
