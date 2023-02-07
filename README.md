@@ -16,4 +16,4 @@ This post-installation script is intended to be used on minimal Kali VM with no 
 
 ## TODOs
 
-- add command to send vpn ip address to clipboard on click
+- Add VS Code / OmniSharp / Mono
