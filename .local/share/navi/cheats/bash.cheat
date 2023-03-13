@@ -1,4 +1,10 @@
-% bash
+% bash/misc
 
 # grep help
 <binary> --help |& grep -- "<string>"
+
+# copy paste clipboard
+cat <FILE> | xclip -selection clipboard
+
+# scp modified files only with ssh key
+rsync -Pavu -e "ssh -i $HOME/.ssh/<KEY_NAME>" <FILE> <VIC_USER>@<REMOTE_IP>:~

@@ -1,0 +1,4 @@
+% rdp
+
+# xfreerdp
+xfreerdp /u:<VIC_USER> /v:<IP> /timeout:50000 +auto-reconnect /auto-reconnect-max-retries:0

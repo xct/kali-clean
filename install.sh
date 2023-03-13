@@ -5,7 +5,7 @@ cat requirements_utilities.txt | xargs sudo DEBIAN_FRONTEND=noninteractive apt -
 cat requirements_toolset.txt | xargs sudo DEBIAN_FRONTEND=noninteractive apt -yq install
 
 # personalised configurations
-mkdir -p $HOME/.local/share/navi/cheats $HOME/.config/i3 $HOME/.config/compton $HOME/.config/rofi $HOME/.config/feroxbuster $HOME/.config/terminator $HOME/.wallpaper
+mkdir -p $HOME/.local/share/navi/cheats $HOME/.config/i3 $HOME/.config/compton $HOME/.config/rofi $HOME/.config/feroxbuster $HOME/.config/terminator
 cp -r .local/share/navi/cheats $HOME/.local/share/navi
 cp -r .mozilla $HOME
 cp .zprofile $HOME
@@ -17,8 +17,7 @@ cp .config/i3/i3blocks.conf $HOME/.config/i3/i3blocks.conf
 cp .config/compton/compton.conf $HOME/.config/compton/compton.conf
 cp .config/rofi/config $HOME/.config/rofi/config
 cp .config/i3/clipboard_fix.sh $HOME/.config/i3/clipboard_fix.sh
-cat requirements_wallpapers.txt | xargs wget -P $HOME/.wallpaper
-betterlockscreen -u $HOME/.wallpaper
+betterlockscreen -u . --fx color --color 808080
 
 # rust tools install
 cargo install rustscan navi
@@ -40,6 +39,9 @@ sudo wget https://github.com/itm4n/PrintSpoofer/releases/download/v1.0/PrintSpoo
 
 # python tools install
 pip3 install bloodhound
+
+# ruby tools install
+sudo gem install evil-winrm
 
 # nerdfonts install/reboot
 mkdir -p ~/.local/share/fonts/
