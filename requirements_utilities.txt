@@ -24,8 +24,11 @@ neovim
 openvpn
 p7zip-full
 papirus-icon-theme
+powershell-lts
 python2
 python3-pip
+python3-venv
+python-is-python3
 rofi
 terminator
 thunar

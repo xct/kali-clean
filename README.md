@@ -16,4 +16,5 @@ This post-installation script is intended to be used on minimal Kali VM with no 
 
 ## TODOs
 
-- Add VS Code / OmniSharp / Mono
+- Add evilclippy to OSEP
+- Add SYANiDE-/SuperSharpShooter to OSEP
