@@ -6,6 +6,7 @@ exiftool
 exploitdb
 feroxbuster
 hashcat
+ffuf
 hydra
 impacket-scripts
 metasploit-framework
