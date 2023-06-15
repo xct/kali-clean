@@ -18,3 +18,5 @@ This post-installation script is intended to be used on minimal Kali VM with no 
 
 - Add evilclippy to OSEP
 - Add SYANiDE-/SuperSharpShooter to OSEP
+- Add powerview and powermad to AD
+- Add https://github.com/dirkjanm/krbrelayx to AD

@@ -23,11 +23,13 @@ betterlockscreen -u . --fx color --color 808080
 cargo install rustscan navi
 
 # github tools install
-sudo curl -sL https://api.github.com/repos/carlospolop/PEASS-ng/releases/latest | jq -r ".assets[].browser_download_url" > git_peass
+sudo curl -sL https://api.github.com/repos/carlospolop/PEASS-ng/releases/latest | jq -r ".assets[].browser_download_url" | sudo tee git_peass
 sudo mkdir -p /opt/peass && sudo wget -i git_peass -P /opt/peass
-sudo curl -sL https://api.github.com/repos/DominicBreuker/pspy/releases/latest | jq -r ".assets[].browser_download_url" > git_pspy
+sudo curl -sL https://api.github.com/repos/DominicBreuker/pspy/releases/latest | jq -r ".assets[].browser_download_url" | sudo tee git_pspy
 sudo mkdir -p /opt/pspy && sudo wget -i git_pspy -P /opt/pspy
-rm git_peass git_pspy
+sudo curl -sL https://api.github.com/repos/jpillora/chisel/releases/latest | jq -r ".assets[].browser_download_url" | grep -e 386 -e amd64 | grep -v darwin | sudo tee git_chisel
+sudo mkdir -p /opt/lateral && sudo wget -i git_chisel -P /opt/lateral
+sudo rm git_peass git_pspy git_chisel
 sudo mkdir -p /opt/webshells
 sudo git clone https://github.com/ivan-sincek/php-reverse-shell.git /opt/webshells/php-reverse-shell
 sudo mkdir -p /opt/win_binaries
