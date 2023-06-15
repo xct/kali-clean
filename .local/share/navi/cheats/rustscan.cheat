@@ -1,0 +1,4 @@
+% rustscan
+
+# defacto
+rustscan -a <IP> -r 0-65535 -- sC -sV -oN -Pn
