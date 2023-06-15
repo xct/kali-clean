@@ -5,6 +5,7 @@ enum4linux
 exiftool
 exploitdb
 feroxbuster
+ffuf
 hydra
 impacket-scripts
 metasploit-framework
