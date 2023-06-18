@@ -17,3 +17,6 @@ This post-installation script is intended to be used on minimal Kali VM with no 
 ## TODOs
 
 - Add VS Code / OmniSharp / Mono
+- Add atom-ng GUI text editor
+- [CTF] cargo rust install project_ares
+- Add linux static binaries (specifically nc and nmap) https://github.com/andrew-d/static-binaries

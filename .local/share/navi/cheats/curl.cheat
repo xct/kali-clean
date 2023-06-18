@@ -2,3 +2,12 @@
 
 # POST (with header)
 curl -X POST <URL> -H 'Content-Length: 0'
+
+# verbose
+curl -vvv <URL>
+
+# download
+curl -O <URL>
+
+# download with rename
+curl -o <NEW_NAME> <URL>
