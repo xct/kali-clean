@@ -20,3 +20,7 @@ This post-installation script is intended to be used on minimal Kali VM with no 
 - Add atom-ng GUI text editor
 - [CTF] cargo rust install project_ares
 - Add linux static binaries (specifically nc and nmap) https://github.com/andrew-d/static-binaries
+- Add evilclippy to OSEP
+- Add SYANiDE-/SuperSharpShooter to OSEP
+- Add powerview and powermad to AD
+- Add https://github.com/dirkjanm/krbrelayx to AD

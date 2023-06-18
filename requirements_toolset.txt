@@ -5,6 +5,7 @@ enum4linux
 exiftool
 exploitdb
 feroxbuster
+hashcat
 ffuf
 hydra
 impacket-scripts
@@ -16,6 +17,7 @@ nikto
 nmap
 proxychains4
 python3-impacket
+responder
 rlwrap
 seclists
 smbclient
@@ -24,3 +26,4 @@ snmp
 sqlmap
 sshuttle
 sslscan
+wireshark

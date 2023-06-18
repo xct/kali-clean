@@ -17,6 +17,7 @@ flameshot
 freerdp2-x11
 fzf
 jq
+krb5-user
 lxappearance
 m4
 meson
@@ -24,9 +25,12 @@ neovim
 openvpn
 p7zip-full
 papirus-icon-theme
+powershell-lts
 python2
+python3-dnspython
 python3-pip
 python3-venv
+python-is-python3
 rofi
 terminator
 thunar

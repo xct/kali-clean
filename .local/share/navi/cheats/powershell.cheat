@@ -1,0 +1,4 @@
+% powershell/misc
+
+# powershell base64 encode command string
+[Convert]::ToBase64String([System.Text.Encoding]::Unicode.GetBytes("'mikefrobbins.com'"))
