@@ -10,6 +10,7 @@ ffuf
 hydra
 impacket-scripts
 metasploit-framework
+mitmproxy
 name-that-hash
 neo4j
 nikto
@@ -23,5 +24,6 @@ smbclient
 smbmap
 snmp
 sqlmap
+sshuttle
 sslscan
 wireshark

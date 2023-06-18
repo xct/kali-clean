@@ -1,0 +1,15 @@
+% ssh
+
+# local port forward (-fN means run in background)
+ssh -L <LOCAL_PORT>:<TARGET_IP>:<TARGET_PORT> <USER>@<PIVOT_IP> -fN
+
+# forward proxy
+ssh -D <LOCAL_PORT> <USER>@<TARGET_IP> -fN
+
+# remote port forward (must start ssh service)
+ssh -R <LOCAL_PORT>:<TARGET_IP>:<TARGET_PORT> <USER>@<LHOST> -i <KEYFILE> -fN
+
+# reverse proxy (not in older ssh clients)
+ssh -R 1337 <USER>@<LHOST> -i <KEYFILE> -fN
+
+$ LHOST: ip -f inet addr show tun0 | sed -En -e 's/.*inet ([0-9.]+).*/\1/p'

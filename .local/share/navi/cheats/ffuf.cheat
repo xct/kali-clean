@@ -6,3 +6,10 @@ ffuf -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-110000.txt -u h
 
 # decrease thread (prevent DoS; default 40)
 ffuf -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-110000.txt -u http://FUZZ.<TLD> -fs <SIZE> -t <THREADS>
+
+# GET
+curl -s http://<URL>?FUZZ=ls+-lah | wc -c
+ffuf -w /usr/share/seclists/Discovery/Web-Content/common.txt -u http://<URL>?FUZZ=test_value -fs <SIZE>
+
+# POST
+ffuf -w /usr/share/seclists/Discovery/Web-Content/common.txt -X POST -d "username=admin\&password=FUZZ" -u https://target/login.php -fc 401

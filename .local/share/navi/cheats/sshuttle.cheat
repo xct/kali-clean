@@ -1,0 +1,14 @@
+% sshuttle
+
+# connect to server in a /24 network
+sshuttle -r <USER>@<PIVOT_IP> <SUBNET>/24
+
+# connect to server; don't know subnet
+sshuttle -r <USER>@<PIVOT_IP> -N
+
+# connect to server with key in a /24 network
+sshuttle -r <USER>@<PIVOT_IP> --ssh-cmd "ssh -i <KEYFILE>" SUBNET/24
+
+# FIX: client_loop: send disconnect: Broken pipe client: fatal: server died with error code 255
+sshuttle -r <USER>@<PIVOT_IP> <SUBNET>/24 -x <PIVOT_IP>
+

