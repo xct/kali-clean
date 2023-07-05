@@ -8,6 +8,9 @@ sudo apt install mono-devel msbuild monodevelop samba
 
 mkdir -p $HOME/osep
 git clone https://github.com/chvancooten/OSEP-Code-Snippets.git $HOME/osep
+git clone https://github.com/outflanknl/EvilClippy.git $HOME/osep
+git clone https://github.com/SYANiDE-/SuperSharpShooter.git $HOME/osep
+
 sudo mv /etc/samba/smb.conf /etc/samba/smb.conf.old
 sudo cp smb.conf /etc/samba/smb.conf
 sudo smbpasswd -a kali
