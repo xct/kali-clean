@@ -29,4 +29,6 @@ This post-installation script is intended to be used on minimal Kali VM with no 
 - https://cheatsheet.haax.fr/windows-systems/exploitation/crackmapexec/
 - https://cheatsheet.haax.fr/windows-systems/exploitation/rdp_exploitation/
 - https://github.com/itm4n/PrivescCheck
-
+- mimikatz to /opt/win_binaries/
+- cheatsheet powershell download into memory
+- see if python2 pip works if not:https://www.kali.org/docs/general-use/using-eol-python-versions/ try installing offsec-awae-python2 first
