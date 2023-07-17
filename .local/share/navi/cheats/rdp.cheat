@@ -1,4 +1,17 @@
 % rdp
 
 # xfreerdp
-xfreerdp /u:<VIC_USER> /v:<IP> /timeout:50000 +auto-reconnect /auto-reconnect-max-retries:0
+xfreerdp /d:<DOMAIN> /u:<VIC_USER> /v:<IP> /timeout:50000 +auto-reconnect /auto-reconnect-max-retries:0
+
+# xfreerdp smb
+xfreerdp /d:<DOMAIN> /u:<VIC_USER> /v:<IP> /timeout:50000 +auto-reconnect /auto-reconnect-max-retries:0 /drive:<WIN_BINARY_FOLDER>,share
+
+# xfreerdp pth
+xfreerdp /u:<VIC_USER> /pth:<HASH> /v:<IP> /timeout:50000 +auto-reconnect /auto-reconnect-max-retries:0
+
+# rdesktop (use if netlogon service is turned off)
+rdesktop -d <DOMAIN> -u <VIC_USER> -p <PASSWORD> <IP>
+
+# add user to rdp group
+net localgroup "Remote Management Users" <USERNAME> /add
+net localgroup "Remote Desktop Users" <USERNAME> /add

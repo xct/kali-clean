@@ -1,0 +1,4 @@
+% sed
+
+# replace
+sudo sed -i 's/<OLDLINE>/<NEWLINE>/' <FILE>
