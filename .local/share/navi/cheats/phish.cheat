@@ -1,0 +1,7 @@
+% phish
+
+# sendemail (singleline message)
+sendEmail -t <VICTIM_EMAIL> -f <ATTACKER_EMAIL> -s <SMTP_SERVER> -u <MAIL_SUBJECT> -a <MALWARE_ATTACHMENT> -m <MESSAGE>
+
+# sendemail (multiline message)
+sendEmail -t <VICTIM_EMAIL> -f <ATTACKER_EMAIL> -s <SMTP_SERVER> -u <MAIL_SUBJECT> -a <MALWARE_ATTACHMENT>

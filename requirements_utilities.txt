@@ -17,6 +17,7 @@ firefox-esr
 flameshot
 freerdp2-x11
 fzf
+gedit
 jq
 krb5-user
 lxappearance

