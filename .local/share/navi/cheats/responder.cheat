@@ -1,0 +1,4 @@
+% responder
+
+# disable SMB (eg. conflicts with NTLMRelayX)
+sudo sed -i 's/SMB = On/SMB = Off/' /etc/responder/Responder.conf

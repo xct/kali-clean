@@ -9,6 +9,7 @@ betterlockscreen
 build-essential
 cargo
 checkinstall
+cifs-utils
 compton
 curl
 feh
