@@ -8,6 +8,25 @@ This post-installation script is intended to be used on minimal Kali VM with no 
 ./build.sh -v vmware -D none -Z $(cat /etc/timezone) -T none -P "network-manager curl neovim"
 ```
 
+If you are building on a Windows machine:
+
+- you will need WSL2
+- install docker in WSL2
+
+```
+# confirm you are running WSL2
+wsl --version
+
+# start the docker service
+sudo systemctl start docker
+
+# continue building your kali VM
+./build-in-container.sh -v vmware -D none -Z $(cat /etc/timezone) -T none -P "network-manager curl neovim"
+
+# copy from WSL to your Windows host (eg. Downloads folder)
+cp -r images/kali-linux-rolling-vmware-amd64.vmwarevm /mnt/c/Users/<USER>/Downloads
+```
+
 ## Installation
 
 ```
