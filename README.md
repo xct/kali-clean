@@ -35,18 +35,8 @@ cp -r images/kali-linux-rolling-vmware-amd64.vmwarevm /mnt/c/Users/<USER>/Downlo
 
 ## TODOs
 
-- Add VS Code / OmniSharp / Mono
-- Add linux static binaries (nc, nmap, socat) https://github.com/andrew-d/static-binaries https://github.com/ernw/static-toolbox
-- [OSEP] Add evilclippy
-- [OSEP] SYANiDE-/SuperSharpShooter
 - [AD] powerview and powermad
-- https://github.com/flozz/p0wny-shell
-- [/opt/win_binaries/] https://github.com/gentilkiwi/mimikatz/releases/tag/2.2.0-20220919
-- [NAVI] https://cheatsheet.haax.fr/windows-systems/exploitation/crackmapexec/
-- [NAVI] https://cheatsheet.haax.fr/windows-systems/exploitation/rdp_exploitation/
-- https://github.com/itm4n/PrivescCheck
 - cheatsheet powershell download into memory
-- see if python2 pip works if not:https://www.kali.org/docs/general-use/using-eol-python-versions/ try installing offsec-awae-python2 first
 - [AD] https://github.com/dirkjanm/krbrelayx
 
 ## Checkout
