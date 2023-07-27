@@ -25,6 +25,7 @@ cargo install rustscan navi
 # github tools install
 sudo curl -sL https://api.github.com/repos/carlospolop/PEASS-ng/releases/latest | jq -r ".assets[].browser_download_url" | sudo tee git_peass
 sudo mkdir -p /opt/peass && sudo wget -i git_peass -P /opt/peass
+sudo wget https://raw.githubusercontent.com/itm4n/PrivescCheck/master/PrivescCheck.ps1 -P /opt/peass
 sudo curl -sL https://api.github.com/repos/DominicBreuker/pspy/releases/latest | jq -r ".assets[].browser_download_url" | sudo tee git_pspy
 sudo mkdir -p /opt/pspy && sudo wget -i git_pspy -P /opt/pspy
 sudo curl -sL https://api.github.com/repos/jpillora/chisel/releases/latest | jq -r ".assets[].browser_download_url" | grep -e 386 -e amd64 | grep -v darwin | sudo tee git_chisel
@@ -32,14 +33,23 @@ sudo mkdir -p /opt/lateral && sudo wget -i git_chisel -P /opt/lateral
 sudo rm git_peass git_pspy git_chisel
 sudo mkdir -p /opt/webshells
 sudo git clone https://github.com/ivan-sincek/php-reverse-shell.git /opt/webshells/php-reverse-shell
+sudo mkdir -p /opt/webshells/p0wny-shell
+sudo wget https://raw.githubusercontent.com/flozz/p0wny-shell/master/shell.php -P /opt/webshells/p0wny-shell
 sudo mkdir -p /opt/win_binaries
 sudo wget https://gitlab.com/kalilinux/packages/windows-binaries/-/raw/kali/master/nc.exe -P /opt/win_binaries
 sudo wget https://live.sysinternals.com/PsExec.exe -P /opt/win_binaries
 sudo wget https://live.sysinternals.com/PsExec64.exe -P /opt/win_binaries
 sudo wget https://github.com/itm4n/PrintSpoofer/releases/download/v1.0/PrintSpoofer32.exe -P /opt/win_binaries
 sudo wget https://github.com/itm4n/PrintSpoofer/releases/download/v1.0/PrintSpoofer64.exe -P /opt/win_binaries
+sudo wget https://github.com/gentilkiwi/mimikatz/releases/download/2.2.0-20220919/mimikatz_trunk.7z -P /opt/win_binaries
+sudo mkdir /opt/lin_binaries
+elf=$(sudo curl -sL https://api.github.com/repos/ernw/static-toolbox/releases | jq -r ".[].tag_name" | grep nmap | head -n 1)
+sudo wget $(sudo curl -sL https://api.github.com/repos/ernw/static-toolbox/releases/tags/$elf | jq -r ".assets[].browser_download_url" | grep _64 | grep tar) -P /opt/lin_binaries
+elf=$(sudo curl -sL https://api.github.com/repos/ernw/static-toolbox/releases | jq -r ".[].tag_name" | grep socat | head -n 1)
+sudo wget $(sudo curl -sL https://api.github.com/repos/ernw/static-toolbox/releases/tags/$elf | jq -r ".assets[].browser_download_url" | grep _64) -P /opt/lin_binaries
 
 # python tools install
+
 pip3 install bloodhound
 
 # ruby tools install
