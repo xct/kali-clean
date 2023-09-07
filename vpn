@@ -1,0 +1,3 @@
+#!/bin/bash
+
+echo $(ifconfig tun0 | grep -w inet | awk -F' ' '{print $2 ; exit}') || echo 'DOWN'
