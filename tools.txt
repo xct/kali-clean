@@ -1,0 +1,18 @@
+# https://github.com/bernsteining/beep-beep
+
+fd
+bottom
+procs
+delta
+dust
+hexyl
+ptf
+zoxide
+tmux
+bat
+glow
+jq
+gron
+flameshot
+asdf
+navi
