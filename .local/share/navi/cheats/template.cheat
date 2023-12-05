@@ -1,0 +1,7 @@
+% start tags
+
+# should be descriptions of commands
+; are ignored. You can use them for metacomments
+navi --print
+
+$ LHOST: ip -f inet addr show tun0 | sed -En -e 's/.*inet ([0-9.]+).*/\1/p'

