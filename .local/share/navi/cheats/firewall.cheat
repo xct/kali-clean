@@ -1,0 +1,7 @@
+% firewall
+
+# firewalld: allow port on public zone
+firewall-cmd --zone=public --add-port <PORT>/tcp
+
+# windows firewall: allow TCP port in
+netsh advfirewall firewall add rule name="<ANY_NAME>" dir=in action=allow protocol=tcp localport=<PORT>

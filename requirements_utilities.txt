@@ -9,6 +9,7 @@ betterlockscreen
 build-essential
 cargo
 checkinstall
+cifs-utils
 compton
 curl
 feh
@@ -27,7 +28,6 @@ openvpn
 p7zip-full
 papirus-icon-theme
 powershell-lts
-python2
 python3-dnspython
 python3-pip
 python3-venv

