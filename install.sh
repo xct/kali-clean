@@ -21,39 +21,42 @@ betterlockscreen -u . --fx color --color 808080
 
 # rust tools install
 cargo install rustscan navi
-
-# github tools install
-sudo curl -sL https://api.github.com/repos/carlospolop/PEASS-ng/releases/latest | jq -r ".assets[].browser_download_url" | sudo tee git_peass
-sudo mkdir -p /opt/peass && sudo wget -i git_peass -P /opt/peass
-sudo wget https://raw.githubusercontent.com/itm4n/PrivescCheck/master/PrivescCheck.ps1 -P /opt/peass
-sudo curl -sL https://api.github.com/repos/DominicBreuker/pspy/releases/latest | jq -r ".assets[].browser_download_url" | sudo tee git_pspy
-sudo mkdir -p /opt/pspy && sudo wget -i git_pspy -P /opt/pspy
-sudo curl -sL https://api.github.com/repos/jpillora/chisel/releases/latest | jq -r ".assets[].browser_download_url" | grep -e 386 -e amd64 | grep -v darwin | sudo tee git_chisel
-sudo mkdir -p /opt/lateral && sudo wget -i git_chisel -P /opt/lateral
-sudo rm git_peass git_pspy git_chisel
-sudo mkdir -p /opt/webshells
-sudo git clone https://github.com/ivan-sincek/php-reverse-shell.git /opt/webshells/php-reverse-shell
-sudo mkdir -p /opt/webshells/p0wny-shell
-sudo wget https://raw.githubusercontent.com/flozz/p0wny-shell/master/shell.php -P /opt/webshells/p0wny-shell
-sudo mkdir -p /opt/win_binaries
-sudo wget https://gitlab.com/kalilinux/packages/windows-binaries/-/raw/kali/master/nc.exe -P /opt/win_binaries
-sudo wget https://live.sysinternals.com/PsExec.exe -P /opt/win_binaries
-sudo wget https://live.sysinternals.com/PsExec64.exe -P /opt/win_binaries
-sudo wget https://github.com/itm4n/PrintSpoofer/releases/download/v1.0/PrintSpoofer32.exe -P /opt/win_binaries
-sudo wget https://github.com/itm4n/PrintSpoofer/releases/download/v1.0/PrintSpoofer64.exe -P /opt/win_binaries
-sudo wget https://github.com/gentilkiwi/mimikatz/releases/download/2.2.0-20220919/mimikatz_trunk.7z -P /opt/win_binaries
-sudo mkdir /opt/lin_binaries
-elf=$(sudo curl -sL https://api.github.com/repos/ernw/static-toolbox/releases | jq -r ".[].tag_name" | grep nmap | head -n 1)
-sudo wget $(sudo curl -sL https://api.github.com/repos/ernw/static-toolbox/releases/tags/$elf | jq -r ".assets[].browser_download_url" | grep _64 | grep tar) -P /opt/lin_binaries
-elf=$(sudo curl -sL https://api.github.com/repos/ernw/static-toolbox/releases | jq -r ".[].tag_name" | grep socat | head -n 1)
-sudo wget $(sudo curl -sL https://api.github.com/repos/ernw/static-toolbox/releases/tags/$elf | jq -r ".assets[].browser_download_url" | grep _64) -P /opt/lin_binaries
-
 # python tools install
-
 pip3 install bloodhound
-
 # ruby tools install
 sudo gem install evil-winrm
+
+# wget tools install into /opt
+sudo mkdir -p /opt/lin /opt/web /opt/win
+sudo curl -sL https://api.github.com/repos/jpillora/chisel/releases/latest | jq -r ".assets[].browser_download_url" | grep -e 386 -e amd64 | grep -v darwin | sudo tee /tmp/git_download
+sudo curl -sL https://api.github.com/repos/projectdiscovery/naabu/releases/latest | jq -r ".assets[].browser_download_url" | grep -e 386 -e amd64 | sudo tee -a /tmp/git_download
+sudo cat /tmp/git_download | grep linux | sudo tee /tmp/git_download_lin
+sudo cat /tmp/git_download | grep windows | sudo tee /tmp/git_download_win
+elf=$(sudo curl -sL https://api.github.com/repos/ernw/static-toolbox/releases | jq -r ".[].tag_name" | grep nmap | head -n 1)
+sudo curl -sL https://api.github.com/repos/ernw/static-toolbox/releases/tags/$elf | jq -r ".assets[].browser_download_url" | grep _64 | grep tar | sudo tee -a /tmp/git_download_lin
+elf=$(sudo curl -sL https://api.github.com/repos/ernw/static-toolbox/releases | jq -r ".[].tag_name" | grep socat | head -n 1)
+sudo curl -sL https://api.github.com/repos/ernw/static-toolbox/releases/tags/$elf | jq -r ".assets[].browser_download_url" | grep _64 | sudo tee -a /tmp/git_download_lin
+sudo wget -i /tmp/git_chisel_lin -P /opt/lin
+sudo wget -i /tmp/git_chisel_win -P /opt/win
+sudo wget https://github.com/carlospolop/PEASS-ng/releases/latest/download/linpeas.sh -P /opt/lin
+sudo curl -sL https://api.github.com/repos/DominicBreuker/pspy/releases/latest | jq -r ".assets[].browser_download_url" | sudo tee /tmp/git_pspy
+sudo mkdir -p /opt/lin/pspy && sudo wget -i /tmp/git_pspy -P /opt/lin/pspy
+sudo git clone https://github.com/ivan-sincek/php-reverse-shell.git /opt/web/php-reverse-shell
+sudo wget https://raw.githubusercontent.com/flozz/p0wny-shell/master/shell.php -P /opt/web/p0wny-shell
+sudo wget https://raw.githubusercontent.com/z3mms/HostRecon/master/HostRecon.ps1 -P /opt/win
+sudo wget https://raw.githubusercontent.com/thamyekh/OSEP-Code-Snippets/main/active_directory/Invoke-Mimikatz2.ps1 -P /opt/win
+sudo wget https://gitlab.com/kalilinux/packages/windows-binaries/-/raw/kali/master/nc.exe -P /opt/win
+sudo wget https://github.com/itm4n/PrintSpoofer/releases/download/v1.0/PrintSpoofer32.exe -P /opt/win
+sudo wget https://github.com/itm4n/PrintSpoofer/releases/download/v1.0/PrintSpoofer64.exe -P /opt/win
+sudo wget https://live.sysinternals.com/PsExec.exe -P /opt/win
+sudo wget https://live.sysinternals.com/PsExec64.exe -P /opt/win
+sudo wget https://github.com/Flangvik/SharpCollection/raw/master/NetFramework_4.7_Any/Rubeus.exe -P /opt/win
+sudo wget https://github.com/carlospolop/PEASS-ng/releases/latest/download/winPEASany_ofs.exe -P /opt/win
+sudo ln -s /opt/lin /var/www/html/lin
+sudo ln -s /opt/web /var/www/html/web
+sudo ln -s /opt/win /var/www/html/win
+# TODO: remove this line after checking nabuu linwinpeas chisel p0wnyshell php nmap socat rubeus are installed
+
 
 # nerdfonts install/reboot
 mkdir -p ~/.local/share/fonts/
@@ -73,4 +76,4 @@ fc-cache -fv
 sudo apt -y install pipewire-pulse wireplumber pipewire-media-session-
 systemctl --user --now enable wireplumber.service
 
-echo "Done! Please reboot: Select i3 on login, run lxappearance and select arc-dark, you can also delete this repo."
+echo "Done! After reboot run lxappearance and select arc-dark, you can also delete this repo."
