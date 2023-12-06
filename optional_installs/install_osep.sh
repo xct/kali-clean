@@ -13,6 +13,7 @@ git clone https://github.com/SYANiDE-/SuperSharpShooter.git $HOME/osep
 
 sudo mv /etc/samba/smb.conf /etc/samba/smb.conf.old
 sudo cp smb.conf /etc/samba/smb.conf
+sudo printf '[share]\n path = /home/kali/osep/\n browseable = yes\n read only = no' > /etc/samba/smb.conf
 sudo smbpasswd -a kali
 sudo systemctl start smbd nmbd
 chmod -R 777 $HOME/osep

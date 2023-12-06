@@ -1,6 +1,7 @@
 i3
 i3blocks
 i3lock-color
+apache2
 arc-theme
 autoconf
 automake
