@@ -43,13 +43,17 @@ navi --print
 # binaries located in /var/www/html/win/
 sudo systemctl start apache2
 ```
-- `tun0` can be copied with a click on the i3bar
+- Modularised optional packages installs in `kali-clean/optional_installs/`
+- IP address of `tun0` can be copied with a click on the i3bar
 
 ## TODOs
 
 - [AD] https://github.com/dirkjanm/krbrelayx
+- [AD] https://github.com/eladshamir/Whisker
+- [i3] https://github.com/AyoItsYas/Mainte
 
 ## Checkout
-https://github.com/Flangvik/SharpCollection
-https://github.com/bohops/GhostBuild
-https://github.com/AdrianVollmer/PowerHub
+Below are things I will get around to trying and will add them to the install script if I find them useful.
+- https://github.com/Flangvik/SharpCollection
+- https://github.com/bohops/GhostBuild
+- https://github.com/AdrianVollmer/PowerHub
