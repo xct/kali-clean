@@ -33,11 +33,23 @@ cp -r images/kali-linux-rolling-vmware-amd64.vmwarevm /mnt/c/Users/<USER>/Downlo
 ./install.sh
 ```
 
+## QoL Improvements vs default Kali
+- Built in cheatsheets using [Navi](https://github.com/denisidoro/navi)
+```
+navi --print
+```
+- Windows binaries symlinked into Apache webroot
+```
+# binaries located in /var/www/html/win/
+sudo systemctl start apache2
+```
+- `tun0` can be copied with a click on the i3bar
+
 ## TODOs
 
-- [AD] powerview and powermad
-- cheatsheet powershell download into memory
 - [AD] https://github.com/dirkjanm/krbrelayx
 
 ## Checkout
-- [CTF] https://github.com/bee-san/Ares
+https://github.com/Flangvik/SharpCollection
+https://github.com/bohops/GhostBuild
+https://github.com/AdrianVollmer/PowerHub

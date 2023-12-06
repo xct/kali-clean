@@ -22,3 +22,8 @@ set lport 443
 set payload <PAYLOAD>
 set session <SESSION>
 exploit
+
+# kirbi ccache converter
+use admin/kerberos/ticket_converter
+run inputpath=ticket.kirbi outputpath=ticket.ccache
+run inputpath=ticket.ccache outputpath=ticket.kirbi
