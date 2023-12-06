@@ -1,0 +1,7 @@
+% git
+
+# setting token
+Settings > Developer Tools > Access Tokens
+git remote set-url origin https://<GITUSER>:<TOKEN>@github.com/<GITUSER>/<REPO>.git
+
+$ LHOST: ip -f inet addr show tun0 | sed -En -e 's/.*inet ([0-9.]+).*/\1/p'
