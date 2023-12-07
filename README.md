@@ -44,13 +44,14 @@ navi --print
 sudo systemctl start apache2
 ```
 - Modularised optional packages installs in `kali-clean/optional_installs/`
-- IP address of `tun0` can be copied with a click on the i3bar
+- IP address of `tun0` is displayed, no need to run `ip a` everytime
 
 ## TODOs
 
 - [AD] https://github.com/dirkjanm/krbrelayx
 - [AD] https://github.com/eladshamir/Whisker
 - [i3] https://github.com/AyoItsYas/Mainte
+- automate darktheme on lxappearance
 
 ## Checkout
 Below are things I will get around to trying and will add them to the install script if I find them useful.

