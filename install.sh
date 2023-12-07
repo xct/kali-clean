@@ -55,11 +55,13 @@ sudo wget https://live.sysinternals.com/PsExec.exe -P /opt/win
 sudo wget https://live.sysinternals.com/PsExec64.exe -P /opt/win
 sudo wget https://github.com/Flangvik/SharpCollection/raw/master/NetFramework_4.7_Any/Rubeus.exe -P /opt/win
 sudo wget https://github.com/carlospolop/PEASS-ng/releases/latest/download/winPEASany_ofs.exe -P /opt/win
+
+# symlinking
 sudo ln -s /opt/lin /var/www/html/lin
 sudo ln -s /opt/web /var/www/html/web
 sudo ln -s /opt/win /var/www/html/win
-# TODO: remove this line after checking nabuu linwinpeas chisel p0wnyshell php nmap socat rubeus are installed
-
+sudo ln -s /usr/lib/bloodhound/resources/app/Collectors/SharpHound.exe /opt/win/SharpHound.exe
+sudo ln -s /usr/lib/bloodhound/resources/app/Collectors/SharpHound.ps1 /opt/win/SharpHound.ps1
 
 # nerdfonts install/reboot
 mkdir -p ~/.local/share/fonts/

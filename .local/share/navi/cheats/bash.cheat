@@ -14,3 +14,6 @@ for i in {1..255}; do (ping -c 1 <SUBNET_IP>.${i} | grep "bytes from" &); done
 
 # live off land: portscan
 for i in {1..65535}; do (echo > /dev/tcp/<IP>/$i) >/dev/null 2>&1 && echo $i is open; done
+
+# latest apache access logs
+tail -f /var/www/log/apache2/access.log
