@@ -71,8 +71,9 @@ rm iosevka
 sudo curl -sL https://api.github.com/repos/ryanoasis/nerd-fonts/releases/latest | jq -r ".assets[] | select(.name | test(\"RobotoMono\")) | .browser_download_url" > robotomono
 wget -i robotomono
 rm robotomono
-7z x Iosevka.zip -o$HOME/.local/share/fonts/
-7z x RobotoMono.zip -o$HOME/.local/share/fonts/
+# TODO: test if fonts work after creating seperate folders
+mkdir $HOME/.local/share/fonts/iosevka && 7z x Iosevka.zip -o$HOME/.local/share/fonts/
+mkdir $HOME/.local/share/fonts/robotomono && 7z x RobotoMono.zip -o$HOME/.local/share/fonts/
 rm Iosevka.zip
 rm RobotoMono.zip
 fc-cache -fv

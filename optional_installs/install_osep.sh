@@ -15,8 +15,7 @@ git clone https://github.com/outflanknl/EvilClippy.git $HOME/osep/EvilClippy
 git clone https://github.com/SYANiDE-/SuperSharpShooter.git $HOME/osep/SuperSharpShooter
 
 sudo mv /etc/samba/smb.conf /etc/samba/smb.conf.old
-sudo cp smb.conf /etc/samba/smb.conf
-sudo printf '[share]\n path = /home/kali/osep/\n browseable = yes\n read only = no' > /etc/samba/smb.conf
+sudo printf '[share]\n path = /home/kali/osep/\n browseable = yes\n read only = no' | sudo tee /etc/samba/smb.conf
 (echo kali; echo kali) | sudo smbpasswd -a kali
 sudo systemctl start smbd nmbd
 chmod -R 777 $HOME/osep

