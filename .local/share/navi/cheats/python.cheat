@@ -6,3 +6,6 @@ python3 -m venv env
 
 # upgrade shell
 python -c 'import pty;pty.spawn("/bin/bash")'
+
+# http.server
+python3 -m http.server

