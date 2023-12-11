@@ -43,6 +43,8 @@ sudo curl -sL https://api.github.com/repos/DominicBreuker/pspy/releases/latest |
 sudo mkdir -p /opt/lin/pspy && sudo wget -i /tmp/git_pspy -P /opt/lin/pspy
 sudo git clone https://github.com/ivan-sincek/php-reverse-shell.git /opt/web/php-reverse-shell
 sudo wget https://raw.githubusercontent.com/flozz/p0wny-shell/master/shell.php -P /opt/web/p0wny-shell
+sudo wget https://raw.githubusercontent.com/61106960/adPEAS/main/adPEAS.ps1 -P /opt/win
+sudo wget https://raw.githubusercontent.com/61106960/adPEAS/main/adPEAS-Light.ps1 -P /opt/win
 sudo wget https://raw.githubusercontent.com/GetRektBoy724/LocalAMSI.Fail/main/AMSIFailGenerator.cs -P /opt/win
 sudo wget https://raw.githubusercontent.com/z3mms/HostRecon/master/HostRecon.ps1 -P /opt/win
 sudo wget https://raw.githubusercontent.com/thamyekh/OSEP-Code-Snippets/main/active_directory/Invoke-Mimikatz2.ps1 -P /opt/win

