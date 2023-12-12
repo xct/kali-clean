@@ -5,7 +5,7 @@ cat requirements_utilities.txt | xargs sudo DEBIAN_FRONTEND=noninteractive apt -
 cat requirements_toolset.txt | xargs sudo DEBIAN_FRONTEND=noninteractive apt -yq install
 
 # personalised configurations
-mkdir -p $HOME/.local/share/navi/cheats $HOME/.config/i3 $HOME/.config/compton $HOME/.config/rofi $HOME/.config/feroxbuster $HOME/.config/terminator
+mkdir -p $HOME/.local/share/navi/cheats $HOME/.config/i3 $HOME/.config/compton $HOME/.config/rofi $HOME/.config/feroxbuster $HOME/.config/terminator $HOME/.config/gtk-3.0
 cp -r .local/share/navi/cheats $HOME/.local/share/navi
 cp -r .mozilla $HOME
 cp .zprofile $HOME
@@ -17,6 +17,7 @@ cp .config/i3/i3blocks.conf $HOME/.config/i3/i3blocks.conf
 cp .config/compton/compton.conf $HOME/.config/compton/compton.conf
 cp .config/rofi/config $HOME/.config/rofi/config
 cp .config/i3/clipboard_fix.sh $HOME/.config/i3/clipboard_fix.sh
+cp .config/gtk-3.0/settings.ini $HOME/.config/gtk-3.0/settings.ini
 betterlockscreen -u . --fx color --color 808080
 
 # rust tools install
@@ -28,18 +29,18 @@ sudo gem install evil-winrm
 
 # wget tools install into /opt
 sudo mkdir -p /opt/lin /opt/web /opt/win
-sudo curl -sL https://api.github.com/repos/jpillora/chisel/releases/latest | jq -r ".assets[].browser_download_url" | grep -e 386 -e amd64 | grep -v darwin | sudo tee /tmp/git_download
-sudo curl -sL https://api.github.com/repos/projectdiscovery/naabu/releases/latest | jq -r ".assets[].browser_download_url" | grep -e 386 -e amd64 | sudo tee -a /tmp/git_download
-sudo cat /tmp/git_download | grep linux | sudo tee /tmp/git_download_lin
-sudo cat /tmp/git_download | grep windows | sudo tee /tmp/git_download_win
-elf=$(sudo curl -sL https://api.github.com/repos/ernw/static-toolbox/releases | jq -r ".[].tag_name" | grep nmap | head -n 1)
-sudo curl -sL https://api.github.com/repos/ernw/static-toolbox/releases/tags/$elf | jq -r ".assets[].browser_download_url" | grep _64 | grep tar | sudo tee -a /tmp/git_download_lin
-elf=$(sudo curl -sL https://api.github.com/repos/ernw/static-toolbox/releases | jq -r ".[].tag_name" | grep socat | head -n 1)
-sudo curl -sL https://api.github.com/repos/ernw/static-toolbox/releases/tags/$elf | jq -r ".assets[].browser_download_url" | grep _64 | sudo tee -a /tmp/git_download_lin
-sudo wget -i /tmp/git_chisel_lin -P /opt/lin
-sudo wget -i /tmp/git_chisel_win -P /opt/win
+curl -sL https://api.github.com/repos/jpillora/chisel/releases/latest | jq -r ".assets[].browser_download_url" | grep -e 386 -e amd64 | grep -v darwin | tee /tmp/git_download
+curl -sL https://api.github.com/repos/projectdiscovery/naabu/releases/latest | jq -r ".assets[].browser_download_url" | grep -e 386 -e amd64 | tee -a /tmp/git_download
+cat /tmp/git_download | grep linux | tee /tmp/git_download_lin
+cat /tmp/git_download | grep windows | tee /tmp/git_download_win
+elf=$(curl -sL https://api.github.com/repos/ernw/static-toolbox/releases | jq -r ".[].tag_name" | grep nmap | head -n 1)
+curl -sL https://api.github.com/repos/ernw/static-toolbox/releases/tags/$elf | jq -r ".assets[].browser_download_url" | grep _64 | grep tar | tee -a /tmp/git_download_lin
+elf=$(curl -sL https://api.github.com/repos/ernw/static-toolbox/releases | jq -r ".[].tag_name" | grep socat | head -n 1)
+curl -sL https://api.github.com/repos/ernw/static-toolbox/releases/tags/$elf | jq -r ".assets[].browser_download_url" | grep _64 | tee -a /tmp/git_download_lin
+sudo wget -i /tmp/git_download_lin -P /opt/lin
+sudo wget -i /tmp/git_download_win -P /opt/win
 sudo wget https://github.com/carlospolop/PEASS-ng/releases/latest/download/linpeas.sh -P /opt/lin
-sudo curl -sL https://api.github.com/repos/DominicBreuker/pspy/releases/latest | jq -r ".assets[].browser_download_url" | sudo tee /tmp/git_pspy
+curl -sL https://api.github.com/repos/DominicBreuker/pspy/releases/latest | jq -r ".assets[].browser_download_url" | tee /tmp/git_pspy
 sudo mkdir -p /opt/lin/pspy && sudo wget -i /tmp/git_pspy -P /opt/lin/pspy
 sudo git clone https://github.com/ivan-sincek/php-reverse-shell.git /opt/web/php-reverse-shell
 sudo wget https://raw.githubusercontent.com/flozz/p0wny-shell/master/shell.php -P /opt/web/p0wny-shell
@@ -67,21 +68,13 @@ sudo ln -s /usr/lib/bloodhound/resources/app/Collectors/SharpHound.ps1 /opt/win/
 
 # nerdfonts install/reboot
 mkdir -p ~/.local/share/fonts/
-sudo curl -sL https://api.github.com/repos/ryanoasis/nerd-fonts/releases/latest | jq -r ".assets[] | select(.name | test(\"Iosevka\")) | .browser_download_url" > iosevka
-wget -i iosevka
-rm iosevka
-sudo curl -sL https://api.github.com/repos/ryanoasis/nerd-fonts/releases/latest | jq -r ".assets[] | select(.name | test(\"RobotoMono\")) | .browser_download_url" > robotomono
-wget -i robotomono
-rm robotomono
-# TODO: test if fonts work after creating seperate folders
-mkdir $HOME/.local/share/fonts/iosevka && 7z x Iosevka.zip -o$HOME/.local/share/fonts/
-mkdir $HOME/.local/share/fonts/robotomono && 7z x RobotoMono.zip -o$HOME/.local/share/fonts/
-rm Iosevka.zip
-rm RobotoMono.zip
+curl -sL https://api.github.com/repos/ryanoasis/nerd-fonts/releases/latest | jq -r ".assets[] | select(.name | test(\"Iosevka\")) | .browser_download_url" | grep Iosevka.zip | tee /tmp/fonts.txt
+curl -sL https://api.github.com/repos/ryanoasis/nerd-fonts/releases/latest | jq -r ".assets[] | select(.name | test(\"RobotoMono\")) | .browser_download_url" | grep RobotoMono.zip | tee -a /tmp/fonts.txt
+wget -i /tmp/fonts.txt -P /tmp
+mkdir -p $HOME/.local/share/fonts/iosevka && 7z x /tmp/Iosevka.zip -o$HOME/.local/share/fonts/iosevka
+mkdir -p $HOME/.local/share/fonts/robotomono && 7z x /tmp/RobotoMono.zip -o$HOME/.local/share/fonts/robotomono
 fc-cache -fv
 
 # configure audio
 sudo apt -y install pipewire-pulse wireplumber pipewire-media-session-
 systemctl --user --now enable wireplumber.service
-
-echo "Done! After reboot run lxappearance and select arc-dark, you can also delete this repo."
