@@ -21,7 +21,6 @@ fzf
 gedit
 jq
 krb5-user
-lxappearance
 m4
 meson
 neovim

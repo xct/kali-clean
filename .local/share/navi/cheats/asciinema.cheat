@@ -1,0 +1,7 @@
+% asciinema
+
+# connect and authenticate to server
+asciinema auth
+
+# record
+asciinema rec -i <TRIM_SEC> <FILE>.cast
