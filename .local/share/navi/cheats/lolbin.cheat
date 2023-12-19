@@ -15,3 +15,6 @@ Set-MpPreference -DisableRealtimeMonitoring $true
 
 # forest enterprise privesc
 net group "Enterprise Admins" /add /domain
+
+# windows /etc/hosts
+type c:\Windows\System32\Drivers\etc\hosts

