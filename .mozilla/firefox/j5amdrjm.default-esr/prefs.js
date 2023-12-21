@@ -63,6 +63,7 @@ user_pref("browser.startup.couldRestoreSession.count", 2);
 user_pref("browser.startup.homepage_override.mstone", "ignore");
 user_pref("browser.startup.homepage_override.once", "{\"message_id\":\"WNP_MOMENTS_14\",\"url\":\"https://www.mozilla.org/firefox/welcome/14\",\"expire\":1668470400000}");
 user_pref("browser.startup.lastColdStartupCheck", 1675681289);
+user_pref("browser.startup.page", 3);
 user_pref("browser.tabs.crashReporting.sendReport", false);
 user_pref("browser.uiCustomization.state", "{\"placements\":{\"widget-overflow-fixed-list\":[],\"nav-bar\":[\"back-button\",\"forward-button\",\"stop-reload-button\",\"home-button\",\"customizableui-special-spring1\",\"urlbar-container\",\"customizableui-special-spring2\",\"save-to-pocket-button\",\"downloads-button\",\"fxa-toolbar-menu-button\",\"ublock0_raymondhill_net-browser-action\",\"foxyproxy_eric_h_jung-browser-action\",\"wappalyzer_crunchlabz_com-browser-action\"],\"toolbar-menubar\":[\"menubar-items\"],\"TabsToolbar\":[\"tabbrowser-tabs\",\"new-tab-button\",\"alltabs-button\"],\"PersonalToolbar\":[\"personal-bookmarks\"]},\"seen\":[\"developer-button\",\"ublock0_raymondhill_net-browser-action\",\"foxyproxy_eric_h_jung-browser-action\",\"wappalyzer_crunchlabz_com-browser-action\"],\"dirtyAreaCache\":[\"nav-bar\",\"toolbar-menubar\",\"TabsToolbar\",\"PersonalToolbar\"],\"currentVersion\":17,\"newElementCount\":2}");
 user_pref("browser.urlbar.groupLabels.enabled", false);

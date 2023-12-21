@@ -5,7 +5,7 @@ cat requirements_utilities.txt | xargs sudo DEBIAN_FRONTEND=noninteractive apt -
 cat requirements_toolset.txt | xargs sudo DEBIAN_FRONTEND=noninteractive apt -yq install
 
 # personalised configurations
-mkdir -p $HOME/.local/share/navi/cheats $HOME/.config/i3 $HOME/.config/compton $HOME/.config/rofi $HOME/.config/feroxbuster $HOME/.config/terminator $HOME/.config/gtk-3.0
+mkdir -p $HOME/.local/share/navi/cheats $HOME/.config/i3 $HOME/.config/compton $HOME/.config/rofi $HOME/.config/feroxbuster $HOME/.config/terminator $HOME/.config/gtk-3.0 $HOME/.config/conky
 cp -r .local/share/navi/cheats $HOME/.local/share/navi
 cp -r .mozilla $HOME
 cp .zprofile $HOME
@@ -18,6 +18,7 @@ cp .config/compton/compton.conf $HOME/.config/compton/compton.conf
 cp .config/rofi/config $HOME/.config/rofi/config
 cp .config/i3/clipboard_fix.sh $HOME/.config/i3/clipboard_fix.sh
 cp .config/gtk-3.0/settings.ini $HOME/.config/gtk-3.0/settings.ini
+cp .config/conky/conky.conf $HOME/.config/conky/conky.conf
 betterlockscreen -u . --fx color --color 808080
 
 # rust tools install

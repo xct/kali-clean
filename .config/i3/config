@@ -14,7 +14,7 @@ exec_always --no-startup-id exec nm-applet etc
 floating_modifier $mod
 
 bindsym $mod+Return exec terminator
-bindsym $mod+P exec flameshot gui
+bindsym $mod+p exec flameshot gui
 bindsym $mod+Shift+q kill
 bindsym $mod+Shift+x exec betterlockscreen -l dim
 bindsym $mod+d exec "rofi -show run"
@@ -102,3 +102,4 @@ default_border normal
 exec_always --no-startup-id compton -b --config ~/.config/compton/compton.conf
 exec_always --no-startup-id ~/.config/i3/clipboard_fix.sh
 exec --no-startup-id betterlockscreen -w dim
+exec --no-startup-id conky
