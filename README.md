@@ -53,6 +53,7 @@ sudo systemctl start apache2
 - [i3] https://github.com/AyoItsYas/Mainte
 - automate darktheme on lxappearance
 - escalated install in kali user context
+- [FF] browser.startup.page = 3
 
 ## Checkout
 Below are things I will get around to trying and will add them to the install script if I find them useful.

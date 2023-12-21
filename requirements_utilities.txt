@@ -12,6 +12,7 @@ cargo
 checkinstall
 cifs-utils
 compton
+conky-std
 curl
 feh
 firefox-esr
