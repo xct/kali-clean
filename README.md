@@ -30,7 +30,7 @@ cp -r images/kali-linux-rolling-vmware-amd64.vmwarevm /mnt/c/Users/<USER>/Downlo
 ## Installation
 
 ```
-sudo -s ./install.sh 2>install.err
+sudo -sE ./install.sh 2>install.err
 ```
 
 ## QoL Improvements vs default Kali
@@ -48,15 +48,14 @@ sudo systemctl start apache2
 
 ## TODOs
 
-- [AD] https://github.com/dirkjanm/krbrelayx
 - [AD] https://github.com/eladshamir/Whisker
-- [i3] https://github.com/AyoItsYas/Mainte
-- automate darktheme on lxappearance
 - escalated install in kali user context
-- [FF] browser.startup.page = 3
 
 ## Checkout
 Below are things I will get around to trying and will add them to the install script if I find them useful.
 - https://github.com/Flangvik/SharpCollection
 - https://github.com/bohops/GhostBuild
 - https://github.com/AdrianVollmer/PowerHub
+
+## Credit
+- https://github.com/AyoItsYas/Mainte

