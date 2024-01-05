@@ -30,7 +30,7 @@ cp -r images/kali-linux-rolling-vmware-amd64.vmwarevm /mnt/c/Users/<USER>/Downlo
 ## Installation
 
 ```
-sudo -u kali -E ./install.sh 2>install.err
+sudo -sE ./install.sh 2>install.err
 ```
 
 ## QoL Improvements vs default Kali
