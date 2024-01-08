@@ -2,6 +2,7 @@
 
 # xfreerdp
 xfreerdp /d:<DOMAIN> /u:<VIC_USER> /p:<PASS> /v:<IP> /timeout:50000 +auto-reconnect /auto-reconnect-max-retries:0
+xfreerdp /u:<VIC_USER> /p:<PASS> /v:<IP> /timeout:50000 +auto-reconnect /auto-reconnect-max-retries:0
 
 # xfreerdp smb
 xfreerdp /d:<DOMAIN> /u:<VIC_USER> /v:<IP> /timeout:50000 +auto-reconnect /auto-reconnect-max-retries:0 /drive:<WIN_BINARY_FOLDER>,share

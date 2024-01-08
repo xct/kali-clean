@@ -19,3 +19,8 @@ sudo printf '[share]\n path = /home/kali/osep/\n browseable = yes\n read only = 
 (echo kali; echo kali) | sudo smbpasswd -a kali
 sudo systemctl start smbd nmbd
 chmod -R 777 $HOME/osep
+
+# configuring proxychains for metasploit
+sudo cp /etc/proxychains4.conf /etc/proxychains.conf
+sudo vim /etc/proxychains.conf
+sudo sed -i 's/socks4       127.0.0.1 9050/socks5 127.0.0.1 1080/' /etc/proxychains.conf

@@ -63,6 +63,7 @@ wget -i /tmp/fonts.txt -P /tmp
 mkdir -p $HOME/.local/share/fonts/iosevka && 7z x /tmp/Iosevka.zip -o$HOME/.local/share/fonts/iosevka
 mkdir -p $HOME/.local/share/fonts/robotomono && 7z x /tmp/RobotoMono.zip -o$HOME/.local/share/fonts/robotomono
 fc-cache -fv
+chown -R kali:kali $HOME
 
 # configure audio
 sudo apt -y install pipewire-pulse wireplumber pipewire-media-session-

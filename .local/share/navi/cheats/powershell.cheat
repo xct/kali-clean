@@ -45,3 +45,6 @@ Enter-PSSession -ComputerName <REMOTE_COMPUTER_NAME> -ConfigurationName <CONFIG_
 
 # view history
 type $((Get-PSReadlineOption).HistorySavePath)
+
+# unzip extract
+Expand-Archive -Path <SRC_PATH> -DestinationPath <DST_PATH>
