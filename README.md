@@ -45,11 +45,12 @@ sudo systemctl start apache2
 ```
 - Optional install scripts in `kali-clean/optional_installs/`
 - IP address of `tun0` is displayed, no need to run `ip a` everytime
+- Better firefox profile: Removed default bookmarks, ublock, foxyproxy, wappalyzer and restore tabs on startup.
 
 ## TODOs
 
 - [AD] https://github.com/eladshamir/Whisker
-- escalated install in kali user context
+- alias navi to n
 
 ## Checkout
 Below are things I will get around to trying and will add them to the install script if I find them useful.
