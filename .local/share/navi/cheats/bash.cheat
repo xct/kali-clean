@@ -34,4 +34,8 @@ sudo tar xvzf /usr/share/seclists/Passwords/Leaked-Databases/rockyou.txt.tar.gz 
 # linux kerberos
 export KRB5CCNAME=/tmp/krb5cc_minenow
 
+# recursively find string in files
+grep -Horni <TEXT> <PATH> 
+grep -Hrni <TEXT> <PATH> 
+
 $ LHOST: ip -f inet addr show tun0 | sed -En -e 's/.*inet ([0-9.]+).*/\1/p'

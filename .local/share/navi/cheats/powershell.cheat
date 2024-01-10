@@ -46,6 +46,12 @@ type $((Get-PSReadlineOption).HistorySavePath)
 # unzip extract
 Expand-Archive -Path <SRC_PATH> -DestinationPath <DST_PATH>
 
+# find search files
+Get-ChildItem -Recurse -Path . -Filter <FILE> -File
+
+# find search text in files
+Get-ChildItem -Recurse -Path . -Include * -File | Select-String -Pattern "<TEXT>"
+
 $ LHOST: ip -f inet addr show tun0 | sed -En -e 's/.*inet ([0-9.]+).*/\1/p'
 $ BS: echo '\'
 $ VAR: echo '$'

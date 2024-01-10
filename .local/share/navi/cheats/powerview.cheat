@@ -20,4 +20,13 @@ Get-DomainUser | Get-ObjectAcl -ResolveGUIDs | Foreach-Object {$_ | Add-Member -
 # permissions for current group
 Get-DomainGroup | Get-ObjectAcl -ResolveGUIDs | Foreach-Object {$_ | Add-Member -NotePropertyName Identity -NotePropertyValue (ConvertFrom-SID $_.SecurityIdentifier.value) -Force; $_} | Foreach-Object {if ($_.Identity -eq $("$env:UserDomain\$env:Username")) {$_}}
 
+# all domain users
+Get-DomainUser
+Get-DomainUser -Domain testlab.local
+
+# groups at target domain with members originating from foreign domain
+Get-DomainForeignGroupMember -Domain <TARGET_DOMAIN> | select MemberDomain, GroupName, MemberName
+convertfrom-sid <MemberName_SID>
+
+
 $ LHOST: ip -f inet addr show tun0 | sed -En -e 's/.*inet ([0-9.]+).*/\1/p'
