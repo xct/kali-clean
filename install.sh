@@ -7,6 +7,7 @@ cat requirements_toolset.txt | xargs sudo DEBIAN_FRONTEND=noninteractive apt -yq
 # personalised configurations
 cp -r .config .local .mozilla .rustscan.toml .zprofile $HOME
 mkdir -p $HOME/.local/bin
+sed -i "s/#alias dir='dir --color=auto'/alias n='navi --print'/" $HOME/.zshrc
 betterlockscreen -u . --fx color --color 808080
 
 # rust tools install

