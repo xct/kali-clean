@@ -1,0 +1,16 @@
+% nmap
+
+# rustscan
+rustscan -a <IP> -r 0-65535
+
+# rustscan config
+$HOME/rustscan.toml
+
+# static portable nmap linux
+tar xvzf nmap-7.94SVN-x86_64-portable.tar.gz && ./run-nmap.sh -sV -Pn -p0- 172.16.179.160,164-169 -T4
+
+# naabu
+nabuu -host <TARGET_IP> -top-ports 100 -no-stdin
+
+# naabu scan uploaded list file
+Expand-Archive naabu_<VERSION>_windows_amd64.zip; .\nabuu.exe -list hosts.txt -p - -no-stdin

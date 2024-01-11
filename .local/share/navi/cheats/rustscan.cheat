@@ -1,7 +1,0 @@
-% rustscan
-
-# defacto
-rustscan -a <IP> -r 0-65535
-
-# rustscan config
-$HOME/rustscan.toml

