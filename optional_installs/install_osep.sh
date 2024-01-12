@@ -24,3 +24,4 @@ chmod -R 777 $HOME/osep
 sudo cp /etc/proxychains4.conf /etc/proxychains.conf
 sudo vim /etc/proxychains.conf
 sudo sed -i 's/socks4       127.0.0.1 9050/socks5 127.0.0.1 1080/' /etc/proxychains.conf
+sudo sed -i 's/proxy_dns/#proxy_dns/' /etc/proxychains.conf
