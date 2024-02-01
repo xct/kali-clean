@@ -13,4 +13,4 @@ tar xvzf nmap-7.94SVN-x86_64-portable.tar.gz && ./run-nmap.sh -sV -Pn -p0- 172.1
 nabuu -host <TARGET_IP> -top-ports 100 -no-stdin
 
 # naabu scan uploaded list file
-Expand-Archive naabu_<VERSION>_windows_amd64.zip; .\nabuu.exe -list hosts.txt -p - -no-stdin
+Expand-Archive naabu_<VERSION>_windows_amd64.zip; ./naabu_<VERSION>_windows_amd64/naabu.exe -list hosts.txt -p - -no-stdin
