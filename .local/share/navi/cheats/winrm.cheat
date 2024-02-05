@@ -1,7 +1,7 @@
 % winrm
 
 # evil-winrm (5985/5986)
-evil-winrm -u <USERNAME> -p <PASS>  -i <IP>
+evil-winrm -u <USERNAME> -p <PASS> -i <IP>
 
 # evil-winrm pth
 evil-winrm -u <USERNAME> -H <HASH> -i <IP>

