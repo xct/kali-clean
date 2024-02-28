@@ -10,3 +10,9 @@ python3 -c 'import pty;pty.spawn("/bin/bash")'
 
 # http.server
 python3 -m http.server
+
+# url encode
+python3 -c "import urllib.parse; print(urllib.parse.quote('<STRING>'))"
+
+# url decode
+python3 -c "import urllib.parse; print(urllib.parse.unquote('<ENCODED_STRING>'))"

